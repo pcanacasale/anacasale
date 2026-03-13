@@ -344,6 +344,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
     <li><a href="#" onclick="showPage('storia');return false;" id="nav-storia">Storia</a></li>
     <li><a href="#" onclick="showPage('notizie');return false;" id="nav-notizie">Notizie</a></li>
     <li><a href="#" onclick="showPage('attivita');return false;" id="nav-attivita">Attività</a></li>
+    <li><a href="#" onclick="showPage('giornale');return false;" id="nav-giornale">Alpin Munfrin</a></li>
     <li><a href="#" onclick="showPage('contatti');return false;" id="nav-contatti">Contatti</a></li>
     <li><a href="#" onclick="showPage('admin');return false;" id="nav-admin" style="opacity:0.45;font-size:0.7rem">🔒</a></li>
   </ul>
@@ -384,7 +385,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
           <div class="storia-badge">96+<span>anni</span></div>
         </div>
         <div class="storia-testo">
-          <div class="section-tag">?? La nostra storia</div>
+          <div class="section-tag">La nostra storia</div>
           <h2 class="section-h2">Fondati nel 1928,<br>attivi da prima</h2>
           <p>La Sezione è costituita ufficialmente il 15 ottobre 1928, ma già dal 1923 era attiva come Gruppo Collettivo affiliato alla Sezione di Acqui Terme, organizzando trasferte e iniziative in tutto il Nord Italia.</p>
           <p>Casale e il Monferrato hanno dato ai reparti Alpini Piemontesi quasi tutti i loro figli. Il 3° e il 4° Alpini, i Battaglioni Exilles e Fenestrelle erano le destinazioni più frequenti dei nostri soldati.</p>
@@ -403,7 +404,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   <!-- Notizie -->
   <section class="section section-white">
     <div class="container">
-      <div class="section-tag">?? Ultime notizie</div>
+      <div class="section-tag">Ultime notizie</div>
       <h2 class="section-h2">Dalla Sezione</h2>
       <div class="notizie-grid">
         <div class="notizia-main">
@@ -459,7 +460,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   <!-- Il Consiglio -->
   <section class="section section-light">
     <div class="container">
-      <div class="section-tag">?? Organigramma</div>
+      <div class="section-tag">Organigramma</div>
       <h2 class="section-h2">Il Consiglio Direttivo</h2>
       <p class="section-lead">I rappresentanti eletti che guidano la Sezione.</p>
       <div class="consiglio-grid" style="margin-top:2rem">
@@ -493,7 +494,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   <!-- I Presidenti -->
   <section class="section section-white">
     <div class="container">
-      <div class="section-tag">?? Storia</div>
+      <div class="section-tag">Storia</div>
       <h2 class="section-h2">I Presidenti della Sezione</h2>
       <div class="presidenti-grid">
         <div class="presidente-card"><div class="anni">Dal 1999 · in carica</div><h4>Gian Luigi Ravera</h4><p>C.M. Art. da Montagna</p></div>
@@ -642,6 +643,31 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   </section>
 </div>
 
+<!-- ══════════════════ PAGE: ALPIN MUNFRIN ══════════════════ -->
+<div class="page" id="page-giornale">
+  <div class="page-header">
+    <div class="breadcrumb">Home <span>›</span> Alpin Munfrin</div>
+    <h1>Alpin Munfrin</h1>
+    <p>Il giornale sezionale della Sezione ANA di Casale Monferrato</p>
+  </div>
+  <section class="section section-light">
+    <div class="container">
+
+      <!-- Filtro anno -->
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap">
+        <input id="gior-search" type="text" placeholder="Cerca per anno o mese..." oninput="filtraGiornale()" style="font-family:'Nunito',sans-serif;font-size:0.88rem;border:1.5px solid #e2e8f0;border-radius:10px;padding:0.65rem 1rem;outline:none;min-width:220px" onfocus="this.style.borderColor='var(--verde)'" onblur="this.style.borderColor='#e2e8f0'">
+        <span id="gior-count" style="font-size:0.82rem;color:var(--testo-ch);font-weight:600"></span>
+      </div>
+
+      <!-- Griglia edizioni -->
+      <div id="gior-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.2rem">
+        <div style="text-align:center;padding:3rem;color:var(--testo-ch);font-size:0.9rem;grid-column:1/-1">Caricamento edizioni...</div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
 <!-- ══════════════════ PAGE: CONTATTI ══════════════════ -->
 <div class="page" id="page-contatti">
   <div class="page-header">
@@ -654,7 +680,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
     <div class="container">
       <div class="contatti-grid">
         <div>
-          <div class="section-tag">?? Dove siamo</div>
+          <div class="section-tag">Dove siamo</div>
           <h2 class="section-h2">La Sede Sezionale</h2>
           <div style="background:var(--bianco);border-radius:20px;padding:2rem;box-shadow:0 8px 40px var(--ombra);margin-top:1.5rem">
             <div class="contact-row">
@@ -682,7 +708,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
               <div class="ico">??</div>
               <div class="info">
                 <h4>Email</h4>
-                <p><a href="mailto:casale@ana.it">casale@ana.it</a></p>
+                <p><a href="/cdn-cgi/l/email-protection#b5d6d4c6d4d9d0f5d4dbd49bdcc1"><span class="__cf_email__" data-cfemail="07646674666b6247666966296e73">[email&#160;protected]</span></a></p>
               </div>
             </div>
             <div class="contact-row">
@@ -749,7 +775,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   <div class="footer-divider"></div>
   <p><strong>A.N.A. Sezione di Casale Monferrato</strong></p>
   <p>Associazione Nazionale Alpini · Via T. De Cristoforis, 16 · 15033 Casale Monferrato (AL)</p>
-  <p>C.F. 82008550061 · <a href="mailto:casale@ana.it">casale@ana.it</a> · Tel. 0142 464534</p>
+  <p>C.F. 82008550061 · <a href="/cdn-cgi/l/email-protection#f3909280929f96b3929d92dd9a87"><span class="__cf_email__" data-cfemail="c5a6a4b6a4a9a085a4aba4ebacb1">[email&#160;protected]</span></a> · Tel. 0142 464534</p>
   <p style="margin-top:0.8rem;font-size:0.7rem;color:rgba(255,255,255,0.25)">
     <a href="https://www.anacasale.it" target="_blank" style="color:rgba(255,255,255,0.3)">www.anacasale.it</a>
   </p>
@@ -794,6 +820,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
       <div style="display:flex;gap:0.5rem;margin-bottom:2rem">
         <button id="tab-notizie-btn" onclick="adminTab('notizie')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:var(--blu);color:white">📰 Notizie</button>
         <button id="tab-eventi-btn" onclick="adminTab('eventi')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📅 Eventi</button>
+        <button id="tab-giornale-btn" onclick="adminTab('giornale')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📰 Alpin Munfrin</button>
       </div>
 
       <div id="tab-notizie">
@@ -841,7 +868,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const SUPA_URL = 'https://vtfxultyvjhwrqqbrztu.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ0Znh1bHR5dmpod3JxcWJyenR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNTAyMTksImV4cCI6MjA4ODkyNjIxOX0.l0pYO98UTGNbDFCACfU8kZWv7Hhhc-pnLpx-EHQDU24';
 
@@ -863,6 +890,7 @@ function showPage(id) {
   document.getElementById('navLinks').classList.remove('open');
   document.getElementById('hamburger').classList.remove('open');
   window.scrollTo({top:0, behavior:'smooth'});
+  if(id === 'giornale') caricaGiornale();
   if(id === 'admin') {
     const u = sessionStorage.getItem('adminUser');
     if(u) { showDashboard(u); } else { showLoginForm(); }
@@ -880,6 +908,7 @@ function showDashboard(username) {
   document.getElementById('admin-welcome').textContent = 'Benvenuto, ' + username;
   caricaNotizie();
   caricaEventi();
+  caricaListaGiornale();
 }
 
 async function adminLogin() {
@@ -908,10 +937,12 @@ function adminLogout() {
 function adminTab(tab) {
   document.getElementById('tab-notizie').style.display = tab === 'notizie' ? 'block' : 'none';
   document.getElementById('tab-eventi').style.display = tab === 'eventi' ? 'block' : 'none';
-  document.getElementById('tab-notizie-btn').style.background = tab === 'notizie' ? 'var(--blu)' : 'white';
-  document.getElementById('tab-notizie-btn').style.color = tab === 'notizie' ? 'white' : 'var(--testo)';
-  document.getElementById('tab-eventi-btn').style.background = tab === 'eventi' ? 'var(--blu)' : 'white';
-  document.getElementById('tab-eventi-btn').style.color = tab === 'eventi' ? 'white' : 'var(--testo)';
+  document.getElementById('tab-giornale').style.display = tab === 'giornale' ? 'block' : 'none';
+  ['notizie','eventi','giornale'].forEach(t => {
+    const btn = document.getElementById('tab-'+t+'-btn');
+    if(btn) { btn.style.background = tab === t ? 'var(--blu)' : 'white'; btn.style.color = tab === t ? 'white' : 'var(--testo)'; }
+  });
+  if(tab === 'giornale') caricaListaGiornale();
 }
 
 async function salvaNotizia() {
@@ -996,17 +1027,95 @@ async function eliminaEvento(id) {
   caricaEventi();
 }
 
-function toggleMenu() {
-  document.getElementById('navLinks').classList.toggle('open');
-  document.getElementById('hamburger').classList.toggle('open');
+const GITHUB_BASE = 'https://raw.githubusercontent.com/pcanacasale/anacasale/main/giornale/';
+
+let giornaleData = [];
+
+async function caricaGiornale() {
+  const grid = document.getElementById('gior-grid');
+  try {
+    const data = await supaFetch('giornale?order=anno.desc,numero.asc&limit=200');
+    giornaleData = data || [];
+    renderGiornale(giornaleData);
+  } catch(e) {
+    grid.innerHTML = '<p style="color:#991b1b;font-size:0.85rem;grid-column:1/-1">Errore caricamento edizioni.</p>';
+  }
 }
 
-function inviaContatto() {
-  const nome = document.getElementById('c-nome').value.trim();
-  const email = document.getElementById('c-email').value.trim();
-  if (!nome || !email) { alert('Inserisci almeno nome ed email.'); return; }
-  document.getElementById('formSuccessC').style.display = 'block';
+function renderGiornale(items) {
+  const grid = document.getElementById('gior-grid');
+  const count = document.getElementById('gior-count');
+  if (!items || items.length === 0) {
+    grid.innerHTML = '<p style="color:var(--testo-ch);font-size:0.85rem;grid-column:1/-1">Nessuna edizione trovata.</p>';
+    if(count) count.textContent = '';
+    return;
+  }
+  if(count) count.textContent = items.length + ' edizioni';
+  grid.innerHTML = items.map(g => {
+    const label = [g.numero ? 'N. ' + g.numero : '', g.mese || ''].filter(Boolean).join(' · ');
+    const url = GITHUB_BASE + encodeURIComponent(g.url_pdf);
+    return `<a href="${url}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;background:white;border-radius:14px;padding:1.4rem 1rem;box-shadow:0 4px 20px var(--ombra);text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;border:1.5px solid transparent" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 30px rgba(26,58,92,0.15)';this.style.borderColor='var(--verde)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px var(--ombra)';this.style.borderColor='transparent'">
+      <div style="font-size:2rem;margin-bottom:0.6rem">📄</div>
+      <div style="font-size:1.5rem;font-weight:900;color:var(--blu);line-height:1">${g.anno}</div>
+      ${label ? `<div style="font-size:0.72rem;font-weight:700;color:var(--testo-ch);margin-top:0.4rem;text-align:center">${label}</div>` : ''}
+      <div style="margin-top:0.8rem;font-size:0.7rem;font-weight:800;color:var(--verde);letter-spacing:0.5px">PDF ↓</div>
+    </a>`;
+  }).join('');
 }
-</script>
-</body>
-</html>
+
+function filtraGiornale() {
+  const q = document.getElementById('gior-search').value.toLowerCase().trim();
+  if (!q) { renderGiornale(giornaleData); return; }
+  const filtered = giornaleData.filter(g =>
+    String(g.anno).includes(q) ||
+    (g.mese && g.mese.toLowerCase().includes(q)) ||
+    (g.numero && String(g.numero).includes(q))
+  );
+  renderGiornale(filtered);
+}
+
+async function salvaGiornale() {
+  const anno = parseInt(document.getElementById('g-anno').value);
+  const numero = document.getElementById('g-numero').value.trim();
+  const mese = document.getElementById('g-mese').value.trim().toUpperCase();
+  const nomefile = document.getElementById('g-nomefile').value.trim();
+  const fb = document.getElementById('g-feedback');
+  if (!anno || !nomefile) { fb.textContent = '⚠️ Anno e nome file obbligatori'; fb.style.color='#b45309'; fb.style.display='inline'; return; }
+  try {
+    await supaFetch('giornale', { method:'POST', body: JSON.stringify({ anno, numero, mese, url_pdf: nomefile }) });
+    fb.textContent = '✅ Aggiunta!'; fb.style.color='var(--verde)'; fb.style.display='inline';
+    document.getElementById('g-anno').value = '';
+    document.getElementById('g-numero').value = '';
+    document.getElementById('g-mese').value = '';
+    document.getElementById('g-nomefile').value = '';
+    setTimeout(() => fb.style.display='none', 3000);
+    caricaListaGiornale();
+  } catch(e) { fb.textContent = '❌ Errore: ' + e.message; fb.style.color='#991b1b'; fb.style.display='inline'; }
+}
+
+async function caricaListaGiornale() {
+  const el = document.getElementById('lista-giornale');
+  try {
+    const data = await supaFetch('giornale?order=anno.desc,numero.asc&limit=200');
+    if (!data || data.length === 0) { el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.85rem">Nessuna edizione inserita.</p>'; return; }
+    el.innerHTML = `<div style="display:flex;flex-direction:column;gap:0.5rem">` + data.map(g =>
+      `<div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;border-radius:8px;border:1px solid #f0f0f0">
+        <span style="font-size:0.88rem;font-weight:700;color:var(--blu)">${g.anno}${g.numero ? ' · N. '+g.numero : ''}${g.mese ? ' · '+g.mese : ''}</span>
+        <div style="display:flex;gap:0.5rem;align-items:center">
+          <span style="font-size:0.72rem;color:var(--testo-ch)">${g.url_pdf}</span>
+          <button onclick="eliminaGiornale('${g.id}')" style="background:#fee2e2;color:#991b1b;border:none;border-radius:6px;padding:0.3rem 0.7rem;font-size:0.72rem;font-weight:700;cursor:pointer">🗑</button>
+        </div>
+      </div>`
+    ).join('') + '</div>';
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b;font-size:0.85rem">Errore caricamento.</p>'; }
+}
+
+async function eliminaGiornale(id) {
+  if (!confirm('Eliminare questa edizione?')) return;
+  await supaFetch('giornale?id=eq.' + id, { method:'DELETE' });
+  caricaListaGiornale();
+}
+
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+  document.getElementById('hamburger').cl
