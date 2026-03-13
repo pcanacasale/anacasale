@@ -717,7 +717,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
               <div class="ico">??</div>
               <div class="info">
                 <h4>Email</h4>
-                <p><a href="/cdn-cgi/l/email-protection#5536342634393015343b347b3c21"><span class="__cf_email__" data-cfemail="47242634262b2207262926692e33">[email&#160;protected]</span></a></p>
+                <p><a href="mailto:casale@ana.it">casale@ana.it</a></p>
               </div>
             </div>
             <div class="contact-row">
@@ -784,7 +784,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   <div class="footer-divider"></div>
   <p><strong>A.N.A. Sezione di Casale Monferrato</strong></p>
   <p>Associazione Nazionale Alpini · Via T. De Cristoforis, 16 · 15033 Casale Monferrato (AL)</p>
-  <p>C.F. 82008550061 · <a href="/cdn-cgi/l/email-protection#4a292b392b262f0a2b242b64233e"><span class="__cf_email__" data-cfemail="94f7f5e7f5f8f1d4f5faf5bafde0">[email&#160;protected]</span></a> · Tel. 0142 464534</p>
+  <p>C.F. 82008550061 · <a href="mailto:casale@ana.it">casale@ana.it</a> · Tel. 0142 464534</p>
   <p style="margin-top:0.8rem;font-size:0.7rem;color:rgba(255,255,255,0.25)">
     <a href="https://www.anacasale.it" target="_blank" style="color:rgba(255,255,255,0.3)">www.anacasale.it</a>
   </p>
@@ -886,7 +886,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const SUPA_URL = 'https://vtfxultyvjhwrqqbrztu.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ0Znh1bHR5dmpod3JxcWJyenR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNTAyMTksImV4cCI6MjA4ODkyNjIxOX0.l0pYO98UTGNbDFCACfU8kZWv7Hhhc-pnLpx-EHQDU24';
 
@@ -1252,4 +1252,15 @@ async function eliminaGiornale(id) {
 
 function toggleMenu() {
   document.getElementById('navLinks').classList.toggle('open');
-  document.getElementById('hamburger').c
+  document.getElementById('hamburger').classList.toggle('open');
+}
+
+function inviaContatto() {
+  const nome = document.getElementById('c-nome').value.trim();
+  const email = document.getElementById('c-email').value.trim();
+  if (!nome || !email) { alert('Inserisci almeno nome ed email.'); return; }
+  document.getElementById('formSuccessC').style.display = 'block';
+}
+</script>
+</body>
+</html>
