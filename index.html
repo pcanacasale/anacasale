@@ -548,44 +548,8 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   </div>
   <section class="section section-light">
     <div class="container">
-      <div style="display:flex;flex-direction:column;gap:1.5rem">
-
-        <div style="background:var(--bianco);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px var(--ombra);display:grid;grid-template-columns:140px 1fr">
-          <div style="background:linear-gradient(135deg,var(--oro-pale),#fde68a);display:flex;align-items:center;justify-content:center;font-size:3rem;padding:2rem">??️</div>
-          <div style="padding:2rem">
-            <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--testo-ch);margin-bottom:0.5rem">Riconoscimento · 2017</div>
-            <h3 style="font-size:1.2rem;font-weight:800;color:var(--blu);margin-bottom:0.8rem;line-height:1.3">Medaglia d'Oro al Merito Civico dalla Città di Casale Monferrato</h3>
-            <p style="font-size:0.87rem;color:var(--testo-ch);line-height:1.85">A fronte di una lunga attività di volontariato, la Città di Casale Monferrato ha conferito alla Sezione la Medaglia d'Oro al Merito Civico in segno di gratitudine e fattivo esempio di azione solidale verso la comunità.</p>
-          </div>
-        </div>
-
-        <div style="background:var(--bianco);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px var(--ombra);display:grid;grid-template-columns:140px 1fr">
-          <div style="background:linear-gradient(135deg,#dbeafe,#d8f3dc);display:flex;align-items:center;justify-content:center;font-size:3rem;padding:2rem">??️</div>
-          <div style="padding:2rem">
-            <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--testo-ch);margin-bottom:0.5rem">Patrimonio storico · 2022</div>
-            <h3 style="font-size:1.2rem;font-weight:800;color:var(--blu);margin-bottom:0.8rem;line-height:1.3">Inaugurato il Famedio: unico in Italia eretto da privati</h3>
-            <p style="font-size:0.87rem;color:var(--testo-ch);line-height:1.85">La Sezione ha portato a termine la costruzione di un Famedio nel quale sono state collocate 6 urne con i resti di soldati Monferrini Internati Militari (IMI) rientrati appositamente dalla Germania. Tre di questi erano Alpini del 3°.</p>
-          </div>
-        </div>
-
-        <div style="background:var(--bianco);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px var(--ombra);display:grid;grid-template-columns:140px 1fr">
-          <div style="background:linear-gradient(135deg,#d8f3dc,#dbeafe);display:flex;align-items:center;justify-content:center;font-size:3rem;padding:2rem">??</div>
-          <div style="padding:2rem">
-            <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--testo-ch);margin-bottom:0.5rem">Solidarietà · 2018</div>
-            <h3 style="font-size:1.2rem;font-weight:800;color:var(--blu);margin-bottom:0.8rem;line-height:1.3">Realizzata sala post-operatoria all'Ospedale Santo Spirito</h3>
-            <p style="font-size:0.87rem;color:var(--testo-ch);line-height:1.85">La Sezione ha realizzato una sala di controllo post-operatoria presso l'Ospedale Santo Spirito di Casale Monferrato, dotata di quattro postazioni completamente monitorate e gestite H/24 dalla sala medica del reparto chirurgia.</p>
-          </div>
-        </div>
-
-        <div style="background:var(--bianco);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px var(--ombra);display:grid;grid-template-columns:140px 1fr">
-          <div style="background:linear-gradient(135deg,var(--oro-pale),#fef9e7);display:flex;align-items:center;justify-content:center;font-size:3rem;padding:2rem">??</div>
-          <div style="padding:2rem">
-            <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--testo-ch);margin-bottom:0.5rem">Patrimonio storico · 2004</div>
-            <h3 style="font-size:1.2rem;font-weight:800;color:var(--blu);margin-bottom:0.8rem;line-height:1.3">Completato il recupero del Sacrario dei Caduti: 4.000 nomi</h3>
-            <p style="font-size:0.87rem;color:var(--testo-ch);line-height:1.85">Nel Sacrario sono ricordati oltre 4.000 Caduti Casalesi e Monferrini che a partire dal 1848 hanno versato il loro sangue per la Patria. Per questo lavoro la Sezione ha impegnato oltre 3.000 ore di prestazioni volontarie e raccolto 155.000 euro.</p>
-          </div>
-        </div>
-
+      <div id="notizie-lista" style="display:flex;flex-direction:column;gap:1.5rem">
+        <p style="color:var(--testo-ch);font-size:0.9rem">Caricamento notizie...</p>
       </div>
     </div>
   </section>
@@ -831,6 +795,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
             <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Categoria</label><select id="n-categoria" style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none;background:white"><option>Comunicato</option><option>Protezione Civile</option><option>Riconoscimento</option><option>Patrimonio storico</option><option>Solidarietà</option></select></div>
           </div>
           <div style="margin-bottom:1rem"><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Testo *</label><textarea id="n-contenuto" rows="4" placeholder="Testo della notizia..." style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none;resize:vertical"></textarea></div>
+          <div style="margin-bottom:1rem"><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">URL Foto (opzionale)</label><input id="n-foto" type="text" placeholder="https://... (link immagine)" style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
           <div style="display:flex;align-items:center;gap:1rem">
             <button onclick="salvaNotizia()" style="background:var(--verde);color:white;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;padding:0.7rem 1.6rem;border-radius:8px">Pubblica</button>
             <span id="n-feedback" style="font-size:0.82rem;font-weight:700;display:none"></span>
@@ -890,6 +855,7 @@ function showPage(id) {
   document.getElementById('navLinks').classList.remove('open');
   document.getElementById('hamburger').classList.remove('open');
   window.scrollTo({top:0, behavior:'smooth'});
+  if(id === 'notizie') caricaNotiziePublic();
   if(id === 'giornale') caricaGiornale();
   if(id === 'admin') {
     const u = sessionStorage.getItem('adminUser');
@@ -952,13 +918,42 @@ async function salvaNotizia() {
   const fb = document.getElementById('n-feedback');
   if (!titolo || !contenuto) { fb.textContent = '⚠️ Titolo e testo sono obbligatori'; fb.style.color='#b45309'; fb.style.display='inline'; return; }
   try {
-    await supaFetch('notizie', { method:'POST', body: JSON.stringify({ titolo, contenuto, categoria }) });
+    const url_foto = document.getElementById('n-foto').value.trim();
+    await supaFetch('notizie', { method:'POST', body: JSON.stringify({ titolo, contenuto, categoria, url_foto: url_foto || null }) });
     fb.textContent = '✅ Pubblicata!'; fb.style.color='var(--verde)'; fb.style.display='inline';
     document.getElementById('n-titolo').value = '';
     document.getElementById('n-contenuto').value = '';
+    document.getElementById('n-foto').value = '';
     setTimeout(() => fb.style.display='none', 3000);
     caricaNotizie();
   } catch(e) { fb.textContent = '❌ Errore: ' + e.message; fb.style.color='#991b1b'; fb.style.display='inline'; }
+}
+
+async function caricaNotiziePublic() {
+  const el = document.getElementById('notizie-lista');
+  if (!el) return;
+  try {
+    const data = await supaFetch('notizie?order=created_at.desc&limit=50');
+    if (!data || data.length === 0) {
+      el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.9rem">Nessuna notizia disponibile.</p>';
+      return;
+    }
+    el.innerHTML = data.map(n => {
+      const data_str = new Date(n.data_pubblicazione).toLocaleDateString('it-IT', {day:'numeric', month:'long', year:'numeric'});
+      const foto = n.url_foto
+        ? '<img src="' + n.url_foto + '" alt="" style="width:180px;min-height:140px;object-fit:cover;flex-shrink:0;border-radius:12px 0 0 12px">'
+        : '<div style="width:140px;min-height:140px;background:linear-gradient(135deg,var(--verde-pale),#dbeafe);display:flex;align-items:center;justify-content:center;font-size:2.5rem;flex-shrink:0;border-radius:12px 0 0 12px">📰</div>';
+      return '<div style="background:var(--bianco);border-radius:14px;overflow:hidden;box-shadow:0 4px 24px var(--ombra);display:flex;gap:0">' +
+        foto +
+        '<div style="padding:1.8rem;flex:1">' +
+        '<div style="font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--verde);margin-bottom:0.5rem">' + n.categoria + ' · ' + data_str + '</div>' +
+        '<h3 style="font-size:1.15rem;font-weight:800;color:var(--blu);margin-bottom:0.8rem;line-height:1.3">' + n.titolo + '</h3>' +
+        '<p style="font-size:0.87rem;color:var(--testo-ch);line-height:1.85">' + n.contenuto + '</p>' +
+        '</div></div>';
+    }).join('');
+  } catch(e) {
+    el.innerHTML = '<p style="color:#991b1b;font-size:0.9rem">Errore caricamento notizie.</p>';
+  }
 }
 
 async function caricaNotizie() {
