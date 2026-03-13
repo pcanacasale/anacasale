@@ -1098,14 +1098,18 @@ async function caricaListaGiornale() {
   try {
     const data = await supaFetch('giornale?order=anno.desc,numero.asc&limit=200');
     if (!data || data.length === 0) { el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.85rem">Nessuna edizione inserita.</p>'; return; }
-    el.innerHTML = '<div style="display:flex;flex-direction:column;gap:0.5rem">' + data.map(g =>
-      '<div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;border-radius:8px;border:1px solid #f0f0f0">' +
-      '<span style="font-size:0.88rem;font-weight:700;color:var(--blu)">' + g.anno + (g.numero ? ' · N. '+g.numero : '') + (g.mese ? ' · '+g.mese : '') + '</span>' +
-      '<div style="display:flex;gap:0.5rem;align-items:center">' +
-      '<span style="font-size:0.72rem;color:var(--testo-ch)">' + g.url_pdf + '</span>' +
-      '<button onclick="eliminaGiornale('' + g.id + '')" style="background:#fee2e2;color:#991b1b;border:none;border-radius:6px;padding:0.3rem 0.7rem;font-size:0.72rem;font-weight:700;cursor:pointer">🗑</button>' +
-      '</div></div>'
-    ).join('') + '</div>';
+    el.innerHTML = data.map(g => {
+      const label = g.anno + (g.numero ? ' · N. '+g.numero : '') + (g.mese ? ' · '+g.mese : '');
+      return '<div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;border-radius:8px;border:1px solid #f0f0f0;margin-bottom:0.5rem">' +
+        '<span style="font-size:0.88rem;font-weight:700;color:var(--blu)">' + label + '</span>' +
+        '<div style="display:flex;gap:0.5rem;align-items:center">' +
+        '<span style="font-size:0.72rem;color:var(--testo-ch)">' + g.url_pdf + '</span>' +
+        '<button data-id="' + g.id + '" class="del-giornale" style="background:#fee2e2;color:#991b1b;border:none;border-radius:6px;padding:0.3rem 0.7rem;font-size:0.72rem;font-weight:700;cursor:pointer">🗑</button>' +
+        '</div></div>';
+    }).join('');
+    el.querySelectorAll('.del-giornale').forEach(btn => {
+      btn.addEventListener('click', () => eliminaGiornale(btn.dataset.id));
+    });
   } catch(e) { el.innerHTML = '<p style="color:#991b1b;font-size:0.85rem">Errore caricamento.</p>'; }
 }
 
