@@ -1107,15 +1107,4 @@ async function caricaListaGiornale() {
         </div>
       </div>`
     ).join('') + '</div>';
-  } catch(e) { el.innerHTML = '<p style="color:#991b1b;font-size:0.85rem">Errore caricamento.</p>'; }
-}
-
-async function eliminaGiornale(id) {
-  if (!confirm('Eliminare questa edizione?')) return;
-  await supaFetch('giornale?id=eq.' + id, { method:'DELETE' });
-  caricaListaGiornale();
-}
-
-function toggleMenu() {
-  document.getElementById('navLinks').classList.toggle('open');
-  document.getElementById('hamburger').cl
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b;font-siz
