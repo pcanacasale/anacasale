@@ -165,6 +165,18 @@ nav {
 .valore-card p { font-size:0.87rem; color:var(--testo-ch); line-height:1.8; }
 
 
+/* ─── VESSILLI ─── */
+.vessillo-card { background:var(--bianco);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px var(--ombra);display:grid;grid-template-columns:280px 1fr;gap:0; }
+.vessillo-foto { width:100%;height:100%;min-height:220px;object-fit:cover;display:block; }
+.vessillo-placeholder { width:100%;min-height:220px;background:linear-gradient(135deg,var(--blu),var(--verde));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;padding:2rem; }
+.vessillo-placeholder span { font-size:3rem; }
+.vessillo-placeholder p { color:rgba(255,255,255,0.8);font-size:0.8rem;font-weight:700;text-align:center; }
+.vessillo-body { padding:2rem; }
+.vessillo-numero { font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--oro);margin-bottom:0.3rem; }
+.vessillo-anno { font-size:1.1rem;font-weight:900;color:var(--blu);margin-bottom:0.8rem; }
+.vessillo-desc { font-size:0.88rem;color:var(--testo-ch);line-height:1.8;margin-bottom:1rem; }
+.vessillo-medaglie { font-size:0.82rem;color:var(--testo);line-height:1.9;white-space:pre-line;border-left:3px solid var(--oro);padding-left:1rem;background:var(--crema);border-radius:0 8px 8px 0;padding:0.8rem 1rem 0.8rem 1rem; }
+@media(max-width:640px){.vessillo-card{grid-template-columns:1fr;}}
 /* ─── NOTIZIE PUBLIC ─── */
 .notizia-card { background:var(--bianco);border-radius:14px;overflow:hidden;box-shadow:0 4px 24px var(--ombra);cursor:pointer;transition:transform .2s,box-shadow .2s; }
 .notizia-card:hover { transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,58,92,0.15); }
@@ -494,30 +506,8 @@ footer a { color:var(--verde-ch); text-decoration:none; }
       <div class="section-tag">Organigramma</div>
       <h2 class="section-h2">Il Consiglio Direttivo</h2>
       <p class="section-lead">I rappresentanti eletti che guidano la Sezione.</p>
-      <div class="consiglio-grid" style="margin-top:2rem">
-        <div class="cons-card vice" style="border-left-color:var(--oro)">
-          <div class="cons-avatar" style="background:linear-gradient(135deg,var(--oro),#e8a820)">MB</div>
-          <div><h4>Mauro Barbano</h4><p>Vice Presidente Vicario</p></div>
-        </div>
-        <div class="cons-card vice">
-          <div class="cons-avatar">PP</div>
-          <div><h4>Pier Paolo Parola</h4><p>Vice Presidente</p></div>
-        </div>
-        <div class="cons-card">
-          <div class="cons-avatar" style="background:linear-gradient(135deg,var(--verde),var(--verde-ch))">RT</div>
-          <div><h4>Renato Traverso</h4><p>Tesoriere</p></div>
-        </div>
-        <div class="cons-card">
-          <div class="cons-avatar" style="background:linear-gradient(135deg,var(--verde),var(--verde-ch))">SG</div>
-          <div><h4>Sergio Gioanola</h4><p>Segretario del Consiglio Direttivo</p></div>
-        </div>
-        <div class="cons-card"><div class="cons-avatar">UA</div><div><h4>Umberto Alberi</h4><p>Consigliere</p></div></div>
-        <div class="cons-card"><div class="cons-avatar">GA</div><div><h4>Giacomino Alcuri</h4><p>Consigliere</p></div></div>
-        <div class="cons-card"><div class="cons-avatar">RB</div><div><h4>Rossano Bellan</h4><p>Consigliere</p></div></div>
-        <div class="cons-card"><div class="cons-avatar">RC</div><div><h4>Roberto Ceria</h4><p>Consigliere</p></div></div>
-        <div class="cons-card"><div class="cons-avatar">MS</div><div><h4>Mario Sartori</h4><p>Consigliere</p></div></div>
-        <div class="cons-card"><div class="cons-avatar">JS</div><div><h4>Juri Sciandra</h4><p>Consigliere</p></div></div>
-        <div class="cons-card"><div class="cons-avatar">GV</div><div><h4>Gianni Vigato</h4><p>Consigliere</p></div></div>
+      <div class="consiglio-grid" id="consiglio-grid" style="margin-top:2rem">
+        <p style="color:var(--testo-ch);font-size:0.9rem">Caricamento...</p>
       </div>
     </div>
   </section>
@@ -545,18 +535,20 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   </div>
   <section class="section section-white">
     <div class="container">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-content"><div class="tl-year">1923</div><p>Gli Alpini casalesi iniziano ad operare come Gruppo Collettivo affiliato alla Sezione di Acqui Terme. Prima partecipazione organizzata all'Adunata di Aosta–Ivrea.</p></div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
-        <div class="tl-item"><div class="tl-content"><div class="tl-year">1928</div><p>Costituzione ufficiale della Sezione di Casale Monferrato il 15 ottobre. Primo Presidente: Ten. Giovanni Bona, 2° Genio Alpino.</p></div><div class="tl-dot"><div class="tl-dot-inner" style="background:var(--oro);box-shadow:0 0 0 3px var(--oro)"></div></div></div>
-        <div class="tl-item"><div class="tl-content"><div class="tl-year">1976</div><p>Campo n°7 di Moggio Udinese: la Sezione organizza squadre di volontari per la ricostruzione dopo il terremoto del Friuli.</p></div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
-        <div class="tl-item"><div class="tl-content"><div class="tl-year">1994</div><p>Alluvione del Tanaro: gli Alpini soccorrono le popolazioni dell'Alessandrino con aiuto manuale e generi di prima necessità.</p></div><div class="tl-dot"><div class="tl-dot-inner" style="background:var(--blu-ch);box-shadow:0 0 0 3px var(--blu-ch)"></div></div></div>
-        <div class="tl-item"><div class="tl-content"><div class="tl-year">1999</div><p>Inaugurazione della sede sociale in Via De Cristoforis, costruita in quattro anni di lavoro e contributi volontari.</p></div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
-        <div class="tl-item"><div class="tl-content"><div class="tl-year">2001</div><p>Costituzione ufficiale dell'Unità di Protezione Civile Sezionale con i primi 25 volontari. Deliberato il motto: "Il nostro fronte è la solidarietà".</p></div><div class="tl-dot"><div class="tl-dot-inner" style="background:var(--verde-ch);box-shadow:0 0 0 3px var(--verde-ch)"></div></div></div>
-        <div class="tl-item"><div class="tl-content"><div class="tl-year">2004</div><p>Completato il recupero del Sacrario dei Caduti: oltre 4.000 Caduti Casalesi e Monferrini ricordati, 3.000 ore di lavoro volontario e 155.000€ raccolti.</p></div><div class="tl-dot"><div class="tl-dot-inner" style="background:var(--oro);box-shadow:0 0 0 3px var(--oro)"></div></div></div>
-        <div class="tl-item"><div class="tl-content"><div class="tl-year">2017</div><p>La Città di Casale Monferrato conferisce alla Sezione la Medaglia d'Oro al Merito Civico per la lunga attività di volontariato e solidarietà.</p></div><div class="tl-dot"><div class="tl-dot-inner" style="background:var(--oro);box-shadow:0 0 0 3px var(--oro)"></div></div></div>
-        <div class="tl-item"><div class="tl-content"><div class="tl-year">2018</div><p>Realizzata sala post-operatoria all'Ospedale Santo Spirito con 4 postazioni monitorate H/24, finanziate dalla Sezione.</p></div><div class="tl-dot"><div class="tl-dot-inner"></div></div></div>
-        <div class="tl-item"><div class="tl-content"><div class="tl-year">2019</div><p>Completata la Sala Storica museale in sede, con cimeli e documenti sulla campagna di Russia.</p></div><div class="tl-dot"><div class="tl-dot-inner" style="background:var(--blu-ch);box-shadow:0 0 0 3px var(--blu-ch)"></div></div></div>
-        <div class="tl-item"><div class="tl-content"><div class="tl-year">2022</div><p>Inaugurato il Famedio — unico in Italia eretto da iniziativa privata — con 6 urne di soldati Monferrini IMI rientrate dalla Germania.</p></div><div class="tl-dot"><div class="tl-dot-inner" style="background:var(--blu-ch);box-shadow:0 0 0 3px var(--blu-ch)"></div></div></div>
+      <div class="timeline" id="storia-timeline">
+        <p style="color:var(--testo-ch);font-size:0.9rem">Caricamento...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vessilli -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-tag">Patrimonio</div>
+      <h2 class="section-h2">I Vessilli della Sezione</h2>
+      <p style="color:var(--testo-ch);max-width:680px;margin-bottom:2.5rem;line-height:1.8">I Vessilli sezionali, custoditi nei locali sezionali, rappresentano il viaggio che la nostra Sezione ha affrontato nel tempo. Le M.O. appuntate sono quelle che risultano dai verbali e dalle circolari trovate in archivio.</p>
+      <div id="vessilli-grid" style="display:flex;flex-direction:column;gap:2rem">
+        <p style="color:var(--testo-ch);font-size:0.9rem">Caricamento...</p>
       </div>
     </div>
   </section>
@@ -825,6 +817,9 @@ footer a { color:var(--verde-ch); text-decoration:none; }
         <button id="tab-eventi-btn" onclick="adminTab('eventi')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📅 Eventi</button>
         <button id="tab-giornale-btn" onclick="adminTab('giornale')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📰 Alpin Munfrin</button>
         <button id="tab-presidenti-btn" onclick="adminTab('presidenti')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">🎖️ Presidenti</button>
+        <button id="tab-consiglieri-btn" onclick="adminTab('consiglieri')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">👥 Consiglieri</button>
+        <button id="tab-storia-btn" onclick="adminTab('storia')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📜 Storia</button>
+        <button id="tab-vessilli-btn" onclick="adminTab('vessilli')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">🏴 Vessilli</button>
       </div>
 
       <div id="tab-notizie">
@@ -905,6 +900,40 @@ footer a { color:var(--verde-ch); text-decoration:none; }
         </div>
       </div>
 
+      <div id="tab-consiglieri" style="display:none">
+        <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra)">
+          <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">👥 Foto Consiglieri</h3>
+          <div id="consiglieri-admin-lista"><p style="color:var(--testo-ch);font-size:0.85rem">Caricamento...</p></div>
+        </div>
+      </div>
+
+      <div id="tab-storia" style="display:none">
+        <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra);margin-bottom:2rem">
+          <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">➕ Nuova Tappa</h3>
+          <div style="display:grid;grid-template-columns:120px 1fr;gap:1rem;margin-bottom:1rem">
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Anno *</label><input id="st-anno" type="text" placeholder="es. 1928" style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Titolo *</label><input id="st-titolo" type="text" placeholder="Titolo dell'evento" style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+          </div>
+          <div style="margin-bottom:1rem"><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Descrizione</label><textarea id="st-desc" rows="3" style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none;resize:vertical"></textarea></div>
+          <div style="margin-bottom:1rem"><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Ordine</label><input id="st-ordine" type="number" placeholder="es. 10" style="width:120px;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+          <div style="display:flex;gap:1rem;align-items:center">
+            <button onclick="salvaStoriaAdmin()" style="background:var(--verde);color:white;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;padding:0.7rem 1.6rem;border-radius:8px">Aggiungi</button>
+            <span id="st-feedback" style="font-size:0.82rem;font-weight:700;display:none"></span>
+          </div>
+        </div>
+        <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra)">
+          <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">📋 Tappe inserite</h3>
+          <div id="lista-storia"><p style="color:var(--testo-ch);font-size:0.85rem">Caricamento...</p></div>
+        </div>
+      </div>
+
+      <div id="tab-vessilli" style="display:none">
+        <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra)">
+          <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">🏴 Foto Vessilli</h3>
+          <div id="vessilli-admin-lista"><p style="color:var(--testo-ch);font-size:0.85rem">Caricamento...</p></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -932,7 +961,8 @@ function showPage(id) {
   document.getElementById('hamburger').classList.remove('open');
   window.scrollTo({top:0, behavior:'smooth'});
   if(id === 'notizie') caricaNotiziePublic();
-  if(id === 'sezione') caricaPresidentiPublic();
+  if(id === 'sezione') { caricaPresidentiPublic(); caricaConsiglieriPublic(); }
+  if(id === 'storia') { caricaStoriaPublic(); caricaVessilli_public(); }
   if(id === 'giornale') caricaGiornale();
   if(id === 'admin') {
     const u = sessionStorage.getItem('adminUser');
@@ -953,6 +983,9 @@ function showDashboard(username) {
   caricaEventi();
   caricaListaGiornale();
   caricaPresidentiAdmin();
+  caricaConsiglieriAdmin();
+  caricaStoriaAdmin();
+  caricaVessilli_admin();
 }
 
 async function adminLogin() {
@@ -979,7 +1012,7 @@ function adminLogout() {
 }
 
 function adminTab(tab) {
-  ['notizie','eventi','giornale','presidenti'].forEach(t => {
+  ['notizie','eventi','giornale','presidenti','consiglieri','storia','vessilli'].forEach(t => {
     const panel = document.getElementById('tab-'+t);
     if(panel) panel.style.display = tab === t ? 'block' : 'none';
     const btn = document.getElementById('tab-'+t+'-btn');
@@ -987,6 +1020,9 @@ function adminTab(tab) {
   });
   if(tab === 'giornale') caricaListaGiornale();
   if(tab === 'presidenti') caricaPresidentiAdmin();
+  if(tab === 'consiglieri') caricaConsiglieriAdmin();
+  if(tab === 'storia') caricaStoriaAdmin();
+  if(tab === 'vessilli') caricaVessilli_admin();
 }
 
 async function uploadFoto(file) {
@@ -1353,6 +1389,223 @@ async function rimuoviFotoPresidente(id) {
   await supaFetch('presidenti?id=eq.' + id, { method: 'PATCH', body: JSON.stringify({ foto_url: null }) });
   caricaPresidentiAdmin();
   caricaPresidentiPublic();
+}
+
+async function caricaConsiglieriPublic() {
+  const el = document.getElementById('consiglio-grid');
+  if (!el) return;
+  try {
+    const data = await supaFetch('consiglieri?order=ordine.asc');
+    if (!data || data.length === 0) { el.innerHTML = '<p>Nessun dato.</p>'; return; }
+    el.innerHTML = data.map(c => {
+      const iniziali = c.nome.split(' ').map(w=>w[0]).slice(0,2).join('');
+      const avatar = c.foto_url
+        ? '<img class="cons-foto" src="' + c.foto_url + '" alt="' + c.nome + '">'
+        : '<div class="cons-avatar">' + iniziali + '</div>';
+      const isVice = c.ruolo.includes('Vice') || c.ruolo.includes('Tesoriere') || c.ruolo.includes('Segretario');
+      return '<div class="cons-card"' + (isVice ? ' style="border-left:3px solid var(--oro)"' : '') + '>' +
+        avatar + '<div><h4>' + c.nome + '</h4><p>' + c.ruolo + '</p></div></div>';
+    }).join('');
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore.</p>'; }
+}
+
+async function caricaConsiglieriAdmin() {
+  const el = document.getElementById('consiglieri-admin-lista');
+  if (!el) return;
+  try {
+    const data = await supaFetch('consiglieri?order=ordine.asc');
+    if (!data || data.length === 0) { el.innerHTML = '<p>Nessun dato.</p>'; return; }
+    el.innerHTML = '';
+    data.forEach(c => {
+      const div = document.createElement('div');
+      div.style.cssText = 'background:#f8fafc;border-radius:12px;padding:1rem;display:flex;align-items:center;gap:1rem;box-shadow:0 2px 10px var(--ombra);margin-bottom:0.8rem';
+      const iniziali = c.nome.split(' ').map(w=>w[0]).slice(0,2).join('');
+      const fotoEl = c.foto_url
+        ? '<img src="' + c.foto_url + '" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--oro);flex-shrink:0">'
+        : '<div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--blu),var(--verde));display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:1rem;flex-shrink:0;border:2px solid var(--oro)">' + iniziali + '</div>';
+      div.innerHTML = fotoEl +
+        '<div style="flex:1"><div style="font-size:0.7rem;font-weight:800;color:var(--verde);text-transform:uppercase">' + c.ruolo + '</div>' +
+        '<div style="font-weight:800;color:var(--blu);font-size:0.9rem">' + c.nome + '</div></div>';
+      const label = document.createElement('label');
+      label.style.cssText = 'cursor:pointer;background:var(--verde);color:white;padding:0.4rem 0.9rem;border-radius:8px;font-size:0.78rem;font-weight:700';
+      label.textContent = '📷 Foto';
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file'; fileInput.accept = 'image/*'; fileInput.style.display = 'none';
+      fileInput.addEventListener('change', function() { uploadFotoConsigliere(c.id, this); });
+      label.appendChild(fileInput);
+      div.appendChild(label);
+      if (c.foto_url) {
+        const btn = document.createElement('button');
+        btn.textContent = '✕';
+        btn.style.cssText = 'background:#fee2e2;color:#991b1b;border:none;border-radius:8px;padding:0.4rem 0.7rem;font-size:0.78rem;font-weight:700;cursor:pointer;margin-left:0.3rem';
+        btn.addEventListener('click', function() { rimuoviFotoConsigliere(c.id); });
+        div.appendChild(btn);
+      }
+      el.appendChild(div);
+    });
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore.</p>'; }
+}
+
+async function uploadFotoConsigliere(id, input) {
+  const file = input.files[0];
+  if (!file) return;
+  const ext = file.name.split('.').pop();
+  const nome = 'consigliere_' + id + '.' + ext;
+  const res = await fetch(SUPA_URL + '/storage/v1/object/consiglieri/' + nome, {
+    method: 'POST',
+    headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY, 'Content-Type': file.type, 'x-upsert': 'true' },
+    body: file
+  });
+  if (!res.ok) { alert('Errore upload: ' + await res.text()); return; }
+  const url = SUPA_URL + '/storage/v1/object/public/consiglieri/' + nome + '?t=' + Date.now();
+  await supaFetch('consiglieri?id=eq.' + id, { method: 'PATCH', body: JSON.stringify({ foto_url: url }) });
+  caricaConsiglieriAdmin();
+  caricaConsiglieriPublic();
+}
+
+async function rimuoviFotoConsigliere(id) {
+  if (!confirm('Rimuovere la foto?')) return;
+  await supaFetch('consiglieri?id=eq.' + id, { method: 'PATCH', body: JSON.stringify({ foto_url: null }) });
+  caricaConsiglieriAdmin();
+  caricaConsiglieriPublic();
+}
+
+async function caricaStoriaPublic() {
+  const el = document.getElementById('storia-timeline');
+  if (!el) return;
+  try {
+    const data = await supaFetch('storia?order=ordine.asc');
+    if (!data || data.length === 0) { el.innerHTML = '<p>Nessun dato.</p>'; return; }
+    el.innerHTML = data.map(t =>
+      '<div class="tl-item"><div class="tl-content"><div class="tl-year">' + t.anno + '</div>' +
+      '<strong style="font-size:0.95rem;color:var(--blu);display:block;margin-bottom:0.3rem">' + t.titolo + '</strong>' +
+      '<p>' + (t.descrizione||'') + '</p></div>' +
+      '<div class="tl-dot"><div class="tl-dot-inner"></div></div></div>'
+    ).join('');
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore caricamento.</p>'; }
+}
+
+async function caricaStoriaAdmin() {
+  const el = document.getElementById('lista-storia');
+  if (!el) return;
+  try {
+    const data = await supaFetch('storia?order=ordine.asc');
+    if (!data || data.length === 0) { el.innerHTML = '<p>Nessun dato.</p>'; return; }
+    el.innerHTML = data.map(t =>
+      '<div style="display:flex;align-items:center;gap:1rem;padding:0.8rem;border-bottom:1px solid #f1f5f9">' +
+      '<div style="background:var(--blu);color:white;border-radius:8px;padding:0.3rem 0.7rem;font-size:0.8rem;font-weight:900;flex-shrink:0">' + t.anno + '</div>' +
+      '<div style="flex:1"><strong style="font-size:0.88rem;color:var(--blu)">' + t.titolo + '</strong></div>' +
+      '<button onclick="eliminaStoria('' + t.id + '')" style="background:#fee2e2;color:#991b1b;border:none;border-radius:8px;padding:0.3rem 0.7rem;font-size:0.78rem;font-weight:700;cursor:pointer">✕</button>' +
+      '</div>'
+    ).join('');
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore.</p>'; }
+}
+
+async function salvaStoriaAdmin() {
+  const anno = document.getElementById('st-anno').value.trim();
+  const titolo = document.getElementById('st-titolo').value.trim();
+  const descrizione = document.getElementById('st-desc').value.trim();
+  const ordine = parseInt(document.getElementById('st-ordine').value) || 99;
+  const fb = document.getElementById('st-feedback');
+  if (!anno || !titolo) { fb.textContent='⚠️ Anno e titolo obbligatori'; fb.style.color='#b45309'; fb.style.display='inline'; return; }
+  try {
+    await supaFetch('storia', { method:'POST', body: JSON.stringify({anno, titolo, descrizione, ordine}) });
+    fb.textContent='✅ Aggiunta!'; fb.style.color='var(--verde)'; fb.style.display='inline';
+    document.getElementById('st-anno').value='';
+    document.getElementById('st-titolo').value='';
+    document.getElementById('st-desc').value='';
+    document.getElementById('st-ordine').value='';
+    setTimeout(()=>fb.style.display='none',3000);
+    caricaStoriaAdmin();
+  } catch(e) { fb.textContent='❌ '+e.message; fb.style.color='#991b1b'; fb.style.display='inline'; }
+}
+
+async function eliminaStoria(id) {
+  if (!confirm('Eliminare questa tappa?')) return;
+  await supaFetch('storia?id=eq.'+id, {method:'DELETE'});
+  caricaStoriaAdmin();
+}
+
+async function caricaVessilli_public() {
+  const el = document.getElementById('vessilli-grid');
+  if (!el) return;
+  try {
+    const data = await supaFetch('vessilli?order=ordine.asc');
+    if (!data || data.length === 0) { el.innerHTML = '<p>Nessun dato.</p>'; return; }
+    el.innerHTML = data.map(v => {
+      const fotoHtml = v.foto_url
+        ? '<img class="vessillo-foto" src="' + v.foto_url + '" alt="' + v.numero + '">'
+        : '<div class="vessillo-placeholder"><span>🏴</span><p>' + v.numero + '</p></div>';
+      return '<div class="vessillo-card">' +
+        fotoHtml +
+        '<div class="vessillo-body">' +
+        '<div class="vessillo-numero">' + v.numero + '</div>' +
+        '<div class="vessillo-anno">Istituito nel ' + v.anno_istituzione + '</div>' +
+        '<div class="vessillo-desc">' + v.descrizione + '</div>' +
+        (v.medaglie ? '<div class="vessillo-medaglie">' + v.medaglie.replace(/</g,'&lt;') + '</div>' : '') +
+        '</div></div>';
+    }).join('');
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore caricamento.</p>'; }
+}
+
+async function caricaVessilli_admin() {
+  const el = document.getElementById('vessilli-admin-lista');
+  if (!el) return;
+  try {
+    const data = await supaFetch('vessilli?order=ordine.asc');
+    if (!data || data.length === 0) { el.innerHTML = '<p>Nessun dato.</p>'; return; }
+    el.innerHTML = '';
+    data.forEach(v => {
+      const div = document.createElement('div');
+      div.style.cssText = 'background:#f8fafc;border-radius:12px;padding:1rem;display:flex;align-items:center;gap:1rem;box-shadow:0 2px 10px var(--ombra);margin-bottom:0.8rem';
+      const fotoEl = v.foto_url
+        ? '<img src="' + v.foto_url + '" style="width:80px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;border:2px solid var(--oro)">'
+        : '<div style="width:80px;height:60px;background:linear-gradient(135deg,var(--blu),var(--verde));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0">🏴</div>';
+      div.innerHTML = fotoEl +
+        '<div style="flex:1"><div style="font-size:0.7rem;font-weight:800;color:var(--oro);text-transform:uppercase">' + v.numero + '</div>' +
+        '<div style="font-weight:800;color:var(--blu);font-size:0.9rem">Istituito nel ' + v.anno_istituzione + '</div></div>';
+      const label = document.createElement('label');
+      label.style.cssText = 'cursor:pointer;background:var(--verde);color:white;padding:0.4rem 0.9rem;border-radius:8px;font-size:0.78rem;font-weight:700';
+      label.textContent = '📷 Foto';
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file'; fileInput.accept = 'image/*'; fileInput.style.display = 'none';
+      fileInput.addEventListener('change', function() { uploadFotoVessillo(v.id, this); });
+      label.appendChild(fileInput);
+      div.appendChild(label);
+      if (v.foto_url) {
+        const btn = document.createElement('button');
+        btn.textContent = '✕';
+        btn.style.cssText = 'background:#fee2e2;color:#991b1b;border:none;border-radius:8px;padding:0.4rem 0.7rem;font-size:0.78rem;font-weight:700;cursor:pointer;margin-left:0.3rem';
+        btn.addEventListener('click', function() { rimuoviFotoVessillo(v.id); });
+        div.appendChild(btn);
+      }
+      el.appendChild(div);
+    });
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore.</p>'; }
+}
+
+async function uploadFotoVessillo(id, input) {
+  const file = input.files[0];
+  if (!file) return;
+  const ext = file.name.split('.').pop();
+  const nome = 'vessillo_' + id + '.' + ext;
+  const res = await fetch(SUPA_URL + '/storage/v1/object/vessilli/' + nome, {
+    method: 'POST',
+    headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY, 'Content-Type': file.type, 'x-upsert': 'true' },
+    body: file
+  });
+  if (!res.ok) { alert('Errore upload: ' + await res.text()); return; }
+  const url = SUPA_URL + '/storage/v1/object/public/vessilli/' + nome + '?t=' + Date.now();
+  await supaFetch('vessilli?id=eq.' + id, { method: 'PATCH', body: JSON.stringify({ foto_url: url }) });
+  caricaVessilli_admin();
+  caricaVessilli_public();
+}
+
+async function rimuoviFotoVessillo(id) {
+  if (!confirm('Rimuovere la foto?')) return;
+  await supaFetch('vessilli?id=eq.' + id, { method: 'PATCH', body: JSON.stringify({ foto_url: null }) });
+  caricaVessilli_admin();
+  caricaVessilli_public();
 }
 
 function toggleMenu() {
