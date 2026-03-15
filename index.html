@@ -1091,7 +1091,7 @@ async function caricaNotiziePublic() {
         '<div class="notizia-card-body">' +
         '<div class="notizia-card-meta">' + n.categoria + ' · ' + data_str + '</div>' +
         '<div class="notizia-card-title">' + n.titolo + '</div>' +
-        (n.sottotitolo ? '<div class="notizia-card-sub">' + n.sottotitolo + '</div>' : '') +
+        (n.sottotitolo ? '<div class="notizia-card-sub">' + n.sottotitolo + '</div>' : "") +
         '</div></div>';
     }).join('');
   } catch(e) {
@@ -1491,16 +1491,27 @@ async function caricaStoriaAdmin() {
   try {
     const data = await supaFetch('storia?order=ordine.asc');
     if (!data || data.length === 0) { el.innerHTML = '<p>Nessun dato.</p>'; return; }
-    el.innerHTML = data.map(t =>
-      '<div style="display:flex;align-items:center;gap:1rem;padding:0.8rem;border-bottom:1px solid #f1f5f9">' +
-      '<div style="background:var(--blu);color:white;border-radius:8px;padding:0.3rem 0.7rem;font-size:0.8rem;font-weight:900;flex-shrink:0">' + t.anno + '</div>' +
-      '<div style="flex:1"><strong style="font-size:0.88rem;color:var(--blu)">' + t.titolo + '</strong></div>' +
-      '<button onclick="eliminaStoria('' + t.id + '')" style="background:#fee2e2;color:#991b1b;border:none;border-radius:8px;padding:0.3rem 0.7rem;font-size:0.78rem;font-weight:700;cursor:pointer">✕</button>' +
-      '</div>'
-    ).join('');
+    el.innerHTML = '';
+    data.forEach(t => {
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;align-items:center;gap:1rem;padding:0.8rem;border-bottom:1px solid #f1f5f9';
+      const badge = document.createElement('div');
+      badge.style.cssText = 'background:var(--blu);color:white;border-radius:8px;padding:0.3rem 0.7rem;font-size:0.8rem;font-weight:900;flex-shrink:0';
+      badge.textContent = t.anno;
+      const info = document.createElement('div');
+      info.style.cssText = 'flex:1';
+      info.innerHTML = '<strong style="font-size:0.88rem;color:var(--blu)">' + t.titolo + '</strong>';
+      const btn = document.createElement('button');
+      btn.textContent = '✕';
+      btn.style.cssText = 'background:#fee2e2;color:#991b1b;border:none;border-radius:8px;padding:0.3rem 0.7rem;font-size:0.78rem;font-weight:700;cursor:pointer';
+      btn.addEventListener('click', function() { eliminaStoria(t.id); });
+      row.appendChild(badge);
+      row.appendChild(info);
+      row.appendChild(btn);
+      el.appendChild(row);
+    });
   } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore.</p>'; }
 }
-
 async function salvaStoriaAdmin() {
   const anno = document.getElementById('st-anno').value.trim();
   const titolo = document.getElementById('st-titolo').value.trim();
@@ -1542,7 +1553,7 @@ async function caricaVessilli_public() {
         '<div class="vessillo-numero">' + v.numero + '</div>' +
         '<div class="vessillo-anno">Istituito nel ' + v.anno_istituzione + '</div>' +
         '<div class="vessillo-desc">' + v.descrizione + '</div>' +
-        (v.medaglie ? '<div class="vessillo-medaglie">' + v.medaglie.replace(/</g,'&lt;') + '</div>' : '') +
+        (v.medaglie ? '<div class="vessillo-medaglie">' + v.medaglie.replace(/</g, '&lt;') + '</div>' : "") +
         '</div></div>';
     }).join('');
   } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore caricamento.</p>'; }
