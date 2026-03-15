@@ -836,7 +836,6 @@ footer a { color:var(--verde-ch); text-decoration:none; }
     <div style="max-width:1000px;margin:0 auto;padding:2rem">
       <div style="display:flex;gap:0.5rem;margin-bottom:2rem">
         <button id="tab-notizie-btn" onclick="adminTab('notizie')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:var(--blu);color:white">📰 Notizie</button>
-        <button id="tab-eventi-btn" onclick="adminTab('eventi')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📅 Eventi</button>
         <button id="tab-giornale-btn" onclick="adminTab('giornale')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📰 Alpin Munfrin</button>
         <button id="tab-presidenti-btn" onclick="adminTab('presidenti')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">🎖️ Presidenti</button>
         <button id="tab-consiglieri-btn" onclick="adminTab('consiglieri')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">👥 Consiglieri</button>
@@ -1055,7 +1054,6 @@ function showDashboard(username, ruolo) {
     if (btn) btn.style.display = ruolo === 'admin' ? '' : 'none';
   });
   caricaNotizie();
-  caricaEventi();
   caricaListaGiornale();
   if (ruolo === 'admin') {
     caricaPresidentiAdmin();
@@ -1090,7 +1088,7 @@ function adminLogout() {
 }
 
 function adminTab(tab) {
-  ['notizie','eventi','giornale','presidenti','consiglieri','storia','vessilli','contributi'].forEach(t => {
+  ['notizie','giornale','presidenti','consiglieri','storia','vessilli','contributi'].forEach(t => {
     const panel = document.getElementById('tab-'+t);
     if(panel) panel.style.display = tab === t ? 'block' : 'none';
     const btn = document.getElementById('tab-'+t+'-btn');
@@ -1295,7 +1293,6 @@ async function caricaEventi() {
 async function eliminaEvento(id) {
   if (!confirm('Eliminare questo evento?')) return;
   await supaFetch('eventi?id=eq.' + id, { method:'DELETE' });
-  caricaEventi();
 }
 
 const GITHUB_BASE = 'https://vtfxultyvjhwrqqbrztu.supabase.co/storage/v1/object/public/giornale/';
