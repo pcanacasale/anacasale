@@ -1563,11 +1563,11 @@ async function caricaConsiglieriAdmin() {
       editDiv.id = 'cons-edit-' + c.id;
       editDiv.style.cssText = 'display:none;background:#fffbeb;border-radius:0 0 12px 12px;padding:1rem;border:1.5px solid #fde68a;border-top:none;gap:0.8rem;flex-wrap:wrap';
       editDiv.innerHTML =
-        '<input id="ce-nome-' + c.id + '" type="text" value="' + c.nome.replace(/"/g,'&quot;') + '" placeholder="Nome" style="flex:1;min-width:140px;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.8rem;outline:none">' +
-        '<input id="ce-ruolo-' + c.id + '" type="text" value="' + c.ruolo.replace(/"/g,'&quot;') + '" placeholder="Ruolo" style="flex:1;min-width:120px;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.8rem;outline:none">' +
-        '<input id="ce-ordine-' + c.id + '" type="number" value="' + c.ordine + '" placeholder="Ordine" style="width:70px;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.8rem;outline:none">' +
-        '<button class="btn-salva-cons" data-cid="' + c.id + '" style="background:var(--blu);color:white;border:none;border-radius:8px;padding:0.5rem 1rem;font-family:\'Nunito\',sans-serif;font-size:0.83rem;font-weight:800;cursor:pointer">Salva</button>' +
-        '<button class="btn-annulla-cons" data-cid="' + c.id + '" style="background:#e2e8f0;color:var(--testo);border:none;border-radius:8px;padding:0.5rem 0.8rem;font-family:\'Nunito\',sans-serif;font-size:0.83rem;font-weight:700;cursor:pointer">✕</button>';
+        '<input id="ce-nome-' + c.id + '" type="text" value="' + c.nome.replace(/"/g,'&quot;') + '" placeholder="Nome" style="flex:1;min-width:140px;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.8rem;outline:none">' +
+        '<input id="ce-ruolo-' + c.id + '" type="text" value="' + c.ruolo.replace(/"/g,'&quot;') + '" placeholder="Ruolo" style="flex:1;min-width:120px;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.8rem;outline:none">' +
+        '<input id="ce-ordine-' + c.id + '" type="number" value="' + c.ordine + '" placeholder="Ordine" style="width:70px;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.8rem;outline:none">' +
+        '<button class="btn-salva-cons" data-cid="' + c.id + '" style="background:var(--blu);color:white;border:none;border-radius:8px;padding:0.5rem 1rem;font-family:Nunito,sans-serif;font-size:0.83rem;font-weight:800;cursor:pointer">Salva</button>' +
+        '<button class="btn-annulla-cons" data-cid="' + c.id + '" style="background:#e2e8f0;color:var(--testo);border:none;border-radius:8px;padding:0.5rem 0.8rem;font-family:Nunito,sans-serif;font-size:0.83rem;font-weight:700;cursor:pointer">✕</button>';
 
       wrapper.appendChild(div);
       wrapper.appendChild(editDiv);
@@ -1767,11 +1767,11 @@ async function caricaStoriaAdmin() {
       row3.style.cssText = 'display:flex;gap:0.6rem';
       const btnSalva = document.createElement('button');
       btnSalva.textContent = 'Salva';
-      btnSalva.style.cssText = 'background:var(--blu);color:white;border:none;border-radius:8px;padding:0.5rem 1rem;font-family:'Nunito',sans-serif;font-size:0.83rem;font-weight:800;cursor:pointer';
+      btnSalva.style.cssText = 'background:var(--blu);color:white;border:none;border-radius:8px;padding:0.5rem 1rem;font-family:Nunito,sans-serif;font-size:0.83rem;font-weight:800;cursor:pointer';
       btnSalva.addEventListener('click', () => salvaModificaStoria(t.id));
       const btnAnnulla = document.createElement('button');
       btnAnnulla.textContent = '✕ Annulla';
-      btnAnnulla.style.cssText = 'background:#e2e8f0;color:var(--testo);border:none;border-radius:8px;padding:0.5rem 0.8rem;font-family:'Nunito',sans-serif;font-size:0.83rem;font-weight:700;cursor:pointer';
+      btnAnnulla.style.cssText = 'background:#e2e8f0;color:var(--testo);border:none;border-radius:8px;padding:0.5rem 0.8rem;font-family:Nunito,sans-serif;font-size:0.83rem;font-weight:700;cursor:pointer';
       btnAnnulla.addEventListener('click', () => toggleEditStoria(t.id));
       row3.appendChild(btnSalva);
       row3.appendChild(btnAnnulla);
