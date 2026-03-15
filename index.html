@@ -1976,15 +1976,23 @@ async function caricaContributiPublic() {
       el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.9rem">Nessun documento disponibile.</p>';
       return;
     }
-    el.innerHTML = data.map(c => {
+    el.innerHTML = '';
+    data.forEach(c => {
       const titolo = c.titolo || ('Contributi ' + c.anno);
-      return '<a href="' + c.url_pdf + '" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:0.8rem;background:var(--bianco);border-radius:14px;padding:1.5rem 1rem;box-shadow:0 4px 20px var(--ombra);text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;border:1.5px solid transparent" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 30px rgba(26,58,92,0.15)';this.style.borderColor='var(--verde)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px var(--ombra)';this.style.borderColor='transparent'">' +
+      const a = document.createElement('a');
+      a.href = c.url_pdf;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:0.8rem;background:var(--bianco);border-radius:14px;padding:1.5rem 1rem;box-shadow:0 4px 20px var(--ombra);text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;border:1.5px solid transparent';
+      a.addEventListener('mouseover', function() { this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(26,58,92,0.15)'; this.style.borderColor='var(--verde)'; });
+      a.addEventListener('mouseout', function() { this.style.transform=''; this.style.boxShadow='0 4px 20px var(--ombra)'; this.style.borderColor='transparent'; });
+      a.innerHTML =
         '<div style="font-size:2.5rem">📄</div>' +
         '<div style="font-size:1.3rem;font-weight:900;color:var(--blu)">' + c.anno + '</div>' +
         '<div style="font-size:0.75rem;font-weight:700;color:var(--testo-ch);text-align:center;line-height:1.4">' + titolo + '</div>' +
-        '<div style="font-size:0.72rem;font-weight:800;color:var(--verde);text-transform:uppercase;letter-spacing:1px">Scarica PDF ↓</div>' +
-        '</a>';
-    }).join('');
+        '<div style="font-size:0.72rem;font-weight:800;color:var(--verde);text-transform:uppercase;letter-spacing:1px">Scarica PDF ↓</div>';
+      el.appendChild(a);
+    });
   } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore caricamento.</p>'; }
 }
 
