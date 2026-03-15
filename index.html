@@ -256,10 +256,12 @@ nav {
 .tl-dot-inner { width:16px; height:16px; border-radius:50%; background:var(--verde); border:3px solid white; box-shadow:0 0 0 3px var(--verde); z-index:1; flex-shrink:0; }
 
 /* ─── PRESIDENTI ─── */
-.presidenti-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:2rem; }
-.presidente-card { background:var(--bianco); border-radius:14px; padding:1.4rem; box-shadow:0 4px 20px var(--ombra); }
+.presidenti-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; margin-top:2rem; }
+.presidente-card { background:var(--bianco); border-radius:16px; padding:1.8rem 1.4rem; box-shadow:0 4px 20px var(--ombra); display:flex; flex-direction:column; align-items:center; text-align:center; }
+.presidente-foto { width:110px; height:110px; border-radius:50%; object-fit:cover; margin-bottom:1rem; border:3px solid var(--oro); }
+.presidente-iniziali { width:110px; height:110px; border-radius:50%; background:linear-gradient(135deg,var(--blu),var(--verde)); display:flex; align-items:center; justify-content:center; font-size:1.6rem; font-weight:900; color:white; margin-bottom:1rem; border:3px solid var(--oro); flex-shrink:0; }
 .presidente-card .anni { font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--verde); margin-bottom:0.4rem; }
-.presidente-card h4 { font-size:0.95rem; font-weight:800; color:var(--blu); margin-bottom:0.2rem; }
+.presidente-card h4 { font-size:1rem; font-weight:800; color:var(--blu); margin-bottom:0.2rem; }
 .presidente-card p { font-size:0.78rem; color:var(--testo-ch); }
 
 /* ─── CONSIGLIO ─── */
@@ -525,16 +527,8 @@ footer a { color:var(--verde-ch); text-decoration:none; }
     <div class="container">
       <div class="section-tag">Storia</div>
       <h2 class="section-h2">I Presidenti della Sezione</h2>
-      <div class="presidenti-grid">
-        <div class="presidente-card"><div class="anni">Dal 1999 · in carica</div><h4>Gian Luigi Ravera</h4><p>C.M. Art. da Montagna</p></div>
-        <div class="presidente-card"><div class="anni">1979 – 1998</div><h4>Pier Carlo Gabba</h4><p>Ten. 1° Rgt Art. da Montagna</p></div>
-        <div class="presidente-card"><div class="anni">1978 – 1979</div><h4>Alessio Fernando</h4><p>Cav. Uff. — C.M. Art. da Montagna</p></div>
-        <div class="presidente-card"><div class="anni">1975 – 1978</div><h4>Orfeo Gasco</h4><p></p></div>
-        <div class="presidente-card"><div class="anni">1971 – 1975</div><h4>Leopoldo Tamagnone</h4><p></p></div>
-        <div class="presidente-card"><div class="anni">1963 – 1971</div><h4>Giuseppe Capra</h4><p></p></div>
-        <div class="presidente-card"><div class="anni">1936 – 1963</div><h4>Pietro Devecchi</h4><p>Cav. di V.V. — 1° Cap. 2 Rgt Alpini</p></div>
-        <div class="presidente-card"><div class="anni">1931 – 1935</div><h4>Michele Miglietta</h4><p>Cav. — Com. Batt. Monferrato</p></div>
-        <div class="presidente-card"><div class="anni">1928 – 1931</div><h4>Giovanni Bona</h4><p>Ten. 2° Genio Alpino</p></div>
+      <div class="presidenti-grid" id="presidenti-grid">
+        <p style="color:var(--testo-ch);font-size:0.9rem">Caricamento...</p>
       </div>
     </div>
   </section>
@@ -830,6 +824,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
         <button id="tab-notizie-btn" onclick="adminTab('notizie')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:var(--blu);color:white">📰 Notizie</button>
         <button id="tab-eventi-btn" onclick="adminTab('eventi')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📅 Eventi</button>
         <button id="tab-giornale-btn" onclick="adminTab('giornale')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📰 Alpin Munfrin</button>
+        <button id="tab-presidenti-btn" onclick="adminTab('presidenti')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">🎖️ Presidenti</button>
       </div>
 
       <div id="tab-notizie">
@@ -882,6 +877,34 @@ footer a { color:var(--verde-ch); text-decoration:none; }
           <div id="lista-eventi"><p style="color:var(--testo-ch);font-size:0.85rem">Caricamento...</p></div>
         </div>
       </div>
+
+      <div id="tab-giornale" style="display:none">
+        <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra);margin-bottom:2rem">
+          <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">➕ Nuova Edizione</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem">
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Anno *</label><input id="g-anno" type="number" placeholder="es. 2024" style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Numero</label><input id="g-numero" type="text" placeholder="es. N.1" style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Mese</label><input id="g-mese" type="text" placeholder="es. Marzo" style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+          </div>
+          <div style="margin-bottom:1rem"><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">URL PDF *</label><input id="g-url" type="text" placeholder="https://..." style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+          <div style="display:flex;align-items:center;gap:1rem">
+            <button onclick="salvaGiornale()" style="background:var(--verde);color:white;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;padding:0.7rem 1.6rem;border-radius:8px">Aggiungi</button>
+            <span id="g-feedback" style="font-size:0.82rem;font-weight:700;display:none"></span>
+          </div>
+        </div>
+        <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra)">
+          <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">📋 Edizioni pubblicate</h3>
+          <div id="lista-giornale"><p style="color:var(--testo-ch);font-size:0.85rem">Caricamento...</p></div>
+        </div>
+      </div>
+
+      <div id="tab-presidenti" style="display:none">
+        <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra)">
+          <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">🖼️ Foto Presidenti</h3>
+          <div id="presidenti-admin-lista"><p style="color:var(--testo-ch);font-size:0.85rem">Caricamento...</p></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -909,6 +932,7 @@ function showPage(id) {
   document.getElementById('hamburger').classList.remove('open');
   window.scrollTo({top:0, behavior:'smooth'});
   if(id === 'notizie') caricaNotiziePublic();
+  if(id === 'sezione') caricaPresidentiPublic();
   if(id === 'giornale') caricaGiornale();
   if(id === 'admin') {
     const u = sessionStorage.getItem('adminUser');
@@ -928,6 +952,7 @@ function showDashboard(username) {
   caricaNotizie();
   caricaEventi();
   caricaListaGiornale();
+  caricaPresidentiAdmin();
 }
 
 async function adminLogin() {
@@ -954,14 +979,14 @@ function adminLogout() {
 }
 
 function adminTab(tab) {
-  document.getElementById('tab-notizie').style.display = tab === 'notizie' ? 'block' : 'none';
-  document.getElementById('tab-eventi').style.display = tab === 'eventi' ? 'block' : 'none';
-  document.getElementById('tab-giornale').style.display = tab === 'giornale' ? 'block' : 'none';
-  ['notizie','eventi','giornale'].forEach(t => {
+  ['notizie','eventi','giornale','presidenti'].forEach(t => {
+    const panel = document.getElementById('tab-'+t);
+    if(panel) panel.style.display = tab === t ? 'block' : 'none';
     const btn = document.getElementById('tab-'+t+'-btn');
     if(btn) { btn.style.background = tab === t ? 'var(--blu)' : 'white'; btn.style.color = tab === t ? 'white' : 'var(--testo)'; }
   });
   if(tab === 'giornale') caricaListaGiornale();
+  if(tab === 'presidenti') caricaPresidentiAdmin();
 }
 
 async function uploadFoto(file) {
@@ -1248,6 +1273,76 @@ async function eliminaGiornale(id) {
   if (!confirm('Eliminare questa edizione?')) return;
   await supaFetch('giornale?id=eq.' + id, { method:'DELETE' });
   caricaListaGiornale();
+}
+
+async function caricaPresidentiPublic() {
+  const el = document.getElementById('presidenti-grid');
+  if (!el) return;
+  try {
+    const data = await supaFetch('presidenti?order=ordine.asc');
+    if (!data || data.length === 0) { el.innerHTML = '<p>Nessun dato.</p>'; return; }
+    el.innerHTML = data.map(p => {
+      const iniziali = p.nome.split(' ').map(w=>w[0]).slice(0,2).join('');
+      const fotoHtml = p.foto_url
+        ? '<img class="presidente-foto" src="' + p.foto_url + '" alt="' + p.nome + '">'
+        : '<div class="presidente-iniziali">' + iniziali + '</div>';
+      return '<div class="presidente-card">' + fotoHtml +
+        '<div class="anni">' + p.anni + '</div>' +
+        '<h4>' + p.nome + '</h4>' +
+        '<p>' + (p.grado||'') + '</p>' +
+        '</div>';
+    }).join('');
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore caricamento.</p>'; }
+}
+
+async function caricaPresidentiAdmin() {
+  const el = document.getElementById('presidenti-admin-lista');
+  if (!el) return;
+  try {
+    const data = await supaFetch('presidenti?order=ordine.asc');
+    if (!data || data.length === 0) { el.innerHTML = '<p>Nessun dato.</p>'; return; }
+    el.innerHTML = data.map(p => {
+      const iniziali = p.nome.split(' ').map(w=>w[0]).slice(0,2).join('');
+      const fotoHtml = p.foto_url
+        ? '<img src="' + p.foto_url + '" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--oro);flex-shrink:0">'
+        : '<div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--blu),var(--verde));display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:1rem;flex-shrink:0;border:2px solid var(--oro)">' + iniziali + '</div>';
+      return '<div style="background:white;border-radius:12px;padding:1rem;display:flex;align-items:center;gap:1rem;box-shadow:0 2px 10px var(--ombra)">' +
+        fotoHtml +
+        '<div style="flex:1">' +
+        '<div style="font-size:0.7rem;font-weight:800;color:var(--verde);text-transform:uppercase">' + p.anni + '</div>' +
+        '<div style="font-weight:800;color:var(--blu);font-size:0.9rem">' + p.nome + '</div>' +
+        '</div>' +
+        '<label style="cursor:pointer;background:var(--verde);color:white;padding:0.4rem 0.9rem;border-radius:8px;font-size:0.78rem;font-weight:700">' +
+        '📷 Foto<input type="file" accept="image/*" style="display:none" onchange="uploadFotoPresidente('' + p.id + '', this)">' +
+        '</label>' +
+        (p.foto_url ? '<button onclick="rimuoviFotoPresidente('' + p.id + '')" style="background:#fee2e2;color:#991b1b;border:none;border-radius:8px;padding:0.4rem 0.7rem;font-size:0.78rem;font-weight:700;cursor:pointer">✕</button>' : '') +
+        '</div>';
+    }).join('');
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore.</p>'; }
+}
+
+async function uploadFotoPresidente(id, input) {
+  const file = input.files[0];
+  if (!file) return;
+  const ext = file.name.split('.').pop();
+  const nome = 'presidente_' + id + '.' + ext;
+  const res = await fetch(SUPA_URL + '/storage/v1/object/presidenti/' + nome, {
+    method: 'POST',
+    headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY, 'Content-Type': file.type, 'x-upsert': 'true' },
+    body: file
+  });
+  if (!res.ok) { alert('Errore upload: ' + await res.text()); return; }
+  const url = SUPA_URL + '/storage/v1/object/public/presidenti/' + nome + '?t=' + Date.now();
+  await supaFetch('presidenti?id=eq.' + id, { method: 'PATCH', body: JSON.stringify({ foto_url: url }) });
+  caricaPresidentiAdmin();
+  caricaPresidentiPublic();
+}
+
+async function rimuoviFotoPresidente(id) {
+  if (!confirm('Rimuovere la foto?')) return;
+  await supaFetch('presidenti?id=eq.' + id, { method: 'PATCH', body: JSON.stringify({ foto_url: null }) });
+  caricaPresidentiAdmin();
+  caricaPresidentiPublic();
 }
 
 function toggleMenu() {
