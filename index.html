@@ -1757,11 +1757,11 @@ async function caricaStoriaAdmin() {
       const row1 = document.createElement('div');
       row1.style.cssText = 'display:flex;gap:0.6rem';
       row1.innerHTML =
-        '<input id="se-anno-' + t.id + '" type="text" value="' + t.anno + '" placeholder="Anno" style="width:80px;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.7rem;outline:none">' +
-        '<input id="se-titolo-' + t.id + '" type="text" value="' + t.titolo.replace(/"/g,'&quot;') + '" placeholder="Titolo" style="flex:1;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.7rem;outline:none">';
+        '<input id="se-anno-' + t.id + '" type="text" value="' + t.anno + '" placeholder="Anno" style="width:80px;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.7rem;outline:none">' +
+        '<input id="se-titolo-' + t.id + '" type="text" value="' + t.titolo.replace(/"/g,'&quot;') + '" placeholder="Titolo" style="flex:1;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.7rem;outline:none">';
 
       const row2 = document.createElement('div');
-      const ta = document.createElement('textarea'); ta.id='se-desc-'+t.id; ta.rows=2; ta.placeholder='Descrizione'; ta.style.cssText='width:100%;font-family:\'Nunito\',sans-serif;font-size:0.83rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.7rem;outline:none;resize:vertical;box-sizing:border-box'; ta.value=(t.descrizione||''); row2.appendChild(ta);
+      const ta = document.createElement('textarea'); ta.id='se-desc-'+t.id; ta.rows=2; ta.placeholder='Descrizione'; ta.style.cssText='width:100%;font-family:Nunito,sans-serif;font-size:0.83rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.7rem;outline:none;resize:vertical;box-sizing:border-box'; ta.value=(t.descrizione||''); row2.appendChild(ta);
 
       const row3 = document.createElement('div');
       row3.style.cssText = 'display:flex;gap:0.6rem';
