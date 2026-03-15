@@ -842,6 +842,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
         <button id="tab-storia-btn" onclick="adminTab('storia')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📜 Storia</button>
         <button id="tab-vessilli-btn" onclick="adminTab('vessilli')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">🏴 Vessilli</button>
         <button id="tab-contributi-btn" onclick="adminTab('contributi')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📄 Contributi</button>
+        <button id="tab-utenti-btn" onclick="adminTab('utenti')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">👤 Utenti</button>
       </div>
 
       <div id="tab-notizie">
@@ -992,6 +993,36 @@ footer a { color:var(--verde-ch); text-decoration:none; }
         </div>
       </div>
 
+      <div id="tab-utenti" style="display:none">
+        <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra);margin-bottom:1.5rem">
+          <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">➕ Nuovo Utente</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Username *</label><input id="ut-user" type="text" placeholder="es. M.ROSSI" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Password *</label><input id="ut-pass" type="text" placeholder="password" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+          </div>
+          <div style="margin-bottom:1.2rem">
+            <label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.6rem">Permessi — cosa può vedere e modificare</label>
+            <div id="ut-permessi-check" style="display:flex;flex-wrap:wrap;gap:0.5rem">
+              <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="notizie" checked> 📰 Notizie</label>
+              <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="giornale" checked> 📖 Alpin Munfrin</label>
+              <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="presidenti"> 🎖️ Presidenti</label>
+              <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="consiglieri"> 👥 Consiglieri</label>
+              <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="storia"> 📜 Storia</label>
+              <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="vessilli"> 🏴 Vessilli</label>
+              <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="contributi"> 📄 Contributi</label>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:center">
+            <button onclick="aggiungiUtente()" style="background:var(--verde);color:white;border:none;cursor:pointer;font-family:Nunito,sans-serif;font-size:0.85rem;font-weight:800;padding:0.7rem 1.6rem;border-radius:8px">Crea Utente</button>
+            <span id="ut-feedback" style="font-size:0.82rem;font-weight:700;display:none"></span>
+          </div>
+        </div>
+        <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra)">
+          <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">👤 Utenti registrati</h3>
+          <div id="utenti-admin-lista"><p style="color:var(--testo-ch);font-size:0.85rem">Caricamento...</p></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -1033,7 +1064,8 @@ function showPage(id) {
   if(id === 'admin') {
     const u = sessionStorage.getItem('adminUser');
     const r = sessionStorage.getItem('adminRuolo') || 'sezione';
-    if(u) { showDashboard(u, r); } else { showLoginForm(); }
+    const p = JSON.parse(sessionStorage.getItem('adminPermessi') || '[]');
+    if(u) { showDashboard(u, r, p); } else { showLoginForm(); }
   }
 }
 
@@ -1042,25 +1074,32 @@ function showLoginForm() {
   document.getElementById('admin-dashboard').style.display = 'none';
 }
 
-function showDashboard(username, ruolo) {
+function showDashboard(username, ruolo, permessi) {
   document.getElementById('admin-login').style.display = 'none';
   document.getElementById('admin-dashboard').style.display = 'block';
   const ruoloLabel = ruolo === 'admin' ? '👑 Admin' : '✏️ Sezione';
   document.getElementById('admin-welcome').textContent = 'Benvenuto, ' + username + ' — ' + ruoloLabel;
-  // Mostra/nascondi tab in base al ruolo
-  const tabsAdmin = ['presidenti','consiglieri','storia','vessilli'];
-  tabsAdmin.forEach(t => {
+  // Tutti i tab disponibili
+  const allTabs = ['notizie','giornale','presidenti','consiglieri','storia','vessilli','contributi','utenti'];
+  const perm = permessi || [];
+  allTabs.forEach(t => {
     const btn = document.getElementById('tab-' + t + '-btn');
-    if (btn) btn.style.display = ruolo === 'admin' ? '' : 'none';
+    if (!btn) return;
+    if (t === 'utenti') {
+      btn.style.display = ruolo === 'admin' ? '' : 'none';
+    } else {
+      btn.style.display = (ruolo === 'admin' || perm.includes(t)) ? '' : 'none';
+    }
   });
-  caricaNotizie();
-  caricaListaGiornale();
-  if (ruolo === 'admin') {
-    caricaPresidentiAdmin();
-    caricaConsiglieriAdmin();
-    caricaStoriaAdmin();
-    caricaVessilli_admin();
-  }
+  // Carica dati per tab visibili
+  if (ruolo === 'admin' || perm.includes('notizie')) caricaNotizie();
+  if (ruolo === 'admin' || perm.includes('giornale')) caricaListaGiornale();
+  if (ruolo === 'admin' || perm.includes('presidenti')) caricaPresidentiAdmin();
+  if (ruolo === 'admin' || perm.includes('consiglieri')) caricaConsiglieriAdmin();
+  if (ruolo === 'admin' || perm.includes('storia')) caricaStoriaAdmin();
+  if (ruolo === 'admin' || perm.includes('vessilli')) caricaVessilli_admin();
+  if (ruolo === 'admin' || perm.includes('contributi')) caricaContributiAdmin();
+  if (ruolo === 'admin') caricaUtentiAdmin();
 }
 
 async function adminLogin() {
@@ -1069,11 +1108,12 @@ async function adminLogin() {
   document.getElementById('login-error').style.display = 'none';
   if (!user || !pass) return;
   try {
-    const data = await supaFetch('utenti?username=eq.' + encodeURIComponent(user) + '&password=eq.' + encodeURIComponent(pass) + '&select=username,ruolo');
+    const data = await supaFetch('utenti?username=eq.' + encodeURIComponent(user) + '&password=eq.' + encodeURIComponent(pass) + '&select=username,ruolo,permessi');
     if (data && data.length > 0) {
       sessionStorage.setItem('adminUser', data[0].username);
       sessionStorage.setItem('adminRuolo', data[0].ruolo || 'sezione');
-      showDashboard(data[0].username, data[0].ruolo || 'sezione');
+      sessionStorage.setItem('adminPermessi', JSON.stringify(data[0].permessi || []));
+      showDashboard(data[0].username, data[0].ruolo || 'sezione', data[0].permessi || []);
     } else {
       document.getElementById('login-error').style.display = 'block';
     }
@@ -1088,7 +1128,7 @@ function adminLogout() {
 }
 
 function adminTab(tab) {
-  ['notizie','giornale','presidenti','consiglieri','storia','vessilli','contributi'].forEach(t => {
+  ['notizie','giornale','presidenti','consiglieri','storia','vessilli','contributi','utenti'].forEach(t => {
     const panel = document.getElementById('tab-'+t);
     if(panel) panel.style.display = tab === t ? 'block' : 'none';
     const btn = document.getElementById('tab-'+t+'-btn');
@@ -1100,6 +1140,7 @@ function adminTab(tab) {
   if(tab === 'storia') caricaStoriaAdmin();
   if(tab === 'vessilli') caricaVessilli_admin();
   if(tab === 'contributi') caricaContributiAdmin();
+  if(tab === 'utenti') caricaUtentiAdmin();
 }
 
 async function uploadFoto(file) {
@@ -2052,6 +2093,128 @@ async function eliminaContributo(id, anno) {
   await supaFetch('contributi?id=eq.' + id, { method: 'DELETE' });
   caricaContributiAdmin();
   caricaContributiPublic();
+}
+
+const TABS_LABELS = {
+  notizie: '📰 Notizie', giornale: '📖 Alpin Munfrin',
+  presidenti: '🎖️ Presidenti', consiglieri: '👥 Consiglieri',
+  storia: '📜 Storia', vessilli: '🏴 Vessilli', contributi: '📄 Contributi'
+};
+
+async function caricaUtentiAdmin() {
+  const el = document.getElementById('utenti-admin-lista');
+  if (!el) return;
+  try {
+    const data = await supaFetch('utenti?order=created_at.asc&select=id,username,ruolo,permessi');
+    if (!data || data.length === 0) { el.innerHTML = '<p>Nessun utente.</p>'; return; }
+    el.innerHTML = '';
+    data.forEach(u => {
+      const isAdmin = u.ruolo === 'admin';
+      const perm = u.permessi || [];
+      const div = document.createElement('div');
+      div.style.cssText = 'background:#f8fafc;border-radius:12px;padding:1.2rem;margin-bottom:1rem;box-shadow:0 2px 8px var(--ombra)';
+
+      const header = document.createElement('div');
+      header.style.cssText = 'display:flex;align-items:center;gap:1rem;margin-bottom:0.8rem';
+      header.innerHTML =
+        '<div style="width:40px;height:40px;border-radius:50%;background:' + (isAdmin ? 'var(--oro)' : 'var(--verde)') + ';display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:0.9rem;flex-shrink:0">' + u.username.charAt(0) + '</div>' +
+        '<div style="flex:1"><div style="font-weight:900;color:var(--blu)">' + u.username + '</div>' +
+        '<div style="font-size:0.72rem;font-weight:700;color:' + (isAdmin ? 'var(--oro)' : 'var(--verde)') + '">' + (isAdmin ? '👑 Admin' : '✏️ Sezione') + '</div></div>';
+
+      if (!isAdmin) {
+        const delBtn = document.createElement('button');
+        delBtn.textContent = '🗑️';
+        delBtn.style.cssText = 'background:#fee2e2;color:#991b1b;border:none;border-radius:8px;padding:0.4rem 0.6rem;cursor:pointer;font-size:0.85rem';
+        delBtn.addEventListener('click', () => eliminaUtente(u.id, u.username));
+        header.appendChild(delBtn);
+      }
+      div.appendChild(header);
+
+      if (!isAdmin) {
+        const permDiv = document.createElement('div');
+        permDiv.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.8rem';
+        Object.entries(TABS_LABELS).forEach(([key, label]) => {
+          const badge = document.createElement('span');
+          badge.style.cssText = 'padding:0.25rem 0.7rem;border-radius:20px;font-size:0.75rem;font-weight:700;' +
+            (perm.includes(key) ? 'background:#d1fae5;color:#065f46' : 'background:#f1f5f9;color:#94a3b8');
+          badge.textContent = label;
+          permDiv.appendChild(badge);
+        });
+        div.appendChild(permDiv);
+
+        const editBtn = document.createElement('button');
+        editBtn.textContent = '✏️ Modifica permessi';
+        editBtn.style.cssText = 'background:#fef9c3;color:#854d0e;border:none;border-radius:8px;padding:0.4rem 0.9rem;font-size:0.8rem;font-weight:700;cursor:pointer';
+        editBtn.addEventListener('click', () => toggleEditPermessi(u.id, perm));
+        div.appendChild(editBtn);
+
+        const editDiv = document.createElement('div');
+        editDiv.id = 'perm-edit-' + u.id;
+        editDiv.style.cssText = 'display:none;margin-top:0.8rem;background:#fffbeb;border-radius:8px;padding:1rem;border:1.5px solid #fde68a';
+        editDiv.innerHTML = '<div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.8rem">' +
+          Object.entries(TABS_LABELS).map(([key, label]) =>
+            '<label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.82rem;font-weight:700">' +
+            '<input type="checkbox" data-uid="' + u.id + '" value="' + key + '"' + (perm.includes(key) ? " checked" : "") + '> ' + label + '</label>'
+          ).join('') +
+          '</div>' +
+          '<button data-uid="' + u.id + '" class="btn-salva-perm" style="background:var(--blu);color:white;border:none;border-radius:8px;padding:0.5rem 1.2rem;font-size:0.83rem;font-weight:800;cursor:pointer">Salva</button>' +
+          '<button data-uid="' + u.id + '" class="btn-annulla-perm" style="background:#e2e8f0;color:var(--testo);border:none;border-radius:8px;padding:0.5rem 0.8rem;font-size:0.83rem;font-weight:700;cursor:pointer;margin-left:0.5rem">Annulla</button>';
+        div.appendChild(editDiv);
+      }
+      el.appendChild(div);
+    });
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore: ' + e.message + '</p>'; }
+}
+
+function toggleEditPermessi(uid) {
+  const el = document.getElementById('perm-edit-' + uid);
+  if (el) el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('btn-salva-perm')) {
+    const uid = e.target.dataset.uid;
+    const checks = document.querySelectorAll('input[type=checkbox][data-uid="' + uid + '"]');
+    const permessi = Array.from(checks).filter(c => c.checked).map(c => c.value);
+    salvaPermessi(uid, permessi);
+  }
+  if (e.target.classList.contains('btn-annulla-perm')) {
+    toggleEditPermessi(e.target.dataset.uid);
+  }
+  if (e.target.classList.contains('btn-salva-cons')) salvaModificaConsigliere(e.target.dataset.cid);
+  if (e.target.classList.contains('btn-annulla-cons')) toggleEditConsigliere(e.target.dataset.cid);
+  if (e.target.classList.contains('btn-del-contrib')) eliminaContributo(e.target.dataset.cid, e.target.dataset.anno);
+});
+
+async function salvaPermessi(uid, permessi) {
+  try {
+    await supaFetch('utenti?id=eq.' + uid, { method: 'PATCH', body: JSON.stringify({ permessi }) });
+    toggleEditPermessi(uid);
+    caricaUtentiAdmin();
+  } catch(e) { alert('Errore: ' + e.message); }
+}
+
+async function aggiungiUtente() {
+  const username = document.getElementById('ut-user').value.trim();
+  const password = document.getElementById('ut-pass').value.trim();
+  const fb = document.getElementById('ut-feedback');
+  if (!username || !password) { fb.textContent='⚠️ Username e password obbligatori'; fb.style.color='#b45309'; fb.style.display='inline'; return; }
+  const checks = document.querySelectorAll('#ut-permessi-check input[type=checkbox]');
+  const permessi = Array.from(checks).filter(c => c.checked).map(c => c.value);
+  try {
+    await supaFetch('utenti', { method: 'POST', body: JSON.stringify({ username, password, ruolo: 'sezione', permessi }) });
+    fb.textContent='✅ Utente creato!'; fb.style.color='var(--verde)'; fb.style.display='inline';
+    document.getElementById('ut-user').value='';
+    document.getElementById('ut-pass').value='';
+    setTimeout(()=>fb.style.display='none', 3000);
+    caricaUtentiAdmin();
+  } catch(e) { fb.textContent='❌ ' + e.message; fb.style.color='#991b1b'; fb.style.display='inline'; }
+}
+
+async function eliminaUtente(id, username) {
+  if (!confirm('Eliminare utente ' + username + '?')) return;
+  await supaFetch('utenti?id=eq.' + id, { method: 'DELETE' });
+  caricaUtentiAdmin();
 }
 
 function toggleMenu() {
