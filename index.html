@@ -1680,7 +1680,7 @@ async function caricaStoriaPublic() {
   const el = document.getElementById('storia-timeline');
   if (!el) return;
   try {
-    const data = await supaFetch('storia?order=ordine.asc');
+    const data = await supaFetch('storia?order=anno.asc');
     if (!data || data.length === 0) { el.innerHTML = '<p>Nessun dato.</p>'; return; }
     el.innerHTML = data.map(t =>
       '<div class="tl-item"><div class="tl-content"><div class="tl-year">' + t.anno + '</div>' +
