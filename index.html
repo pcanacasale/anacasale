@@ -393,7 +393,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
     <li><a href="#" onclick="showPage('chisiamo');return false;" id="nav-chisiamo">La Sezione</a></li>
     <li><a href="#" onclick="showPage('storia');return false;" id="nav-storia">Storia</a></li>
     <li><a href="#" onclick="showPage('notizie');return false;" id="nav-notizie">Notizie</a></li>
-    <li><a href="#" onclick="showPage('attivita');return false;" id="nav-attivita">Attività</a></li>
+    <li><a href="#" onclick="showPage('chisiamo');setTimeout(()=>{const el=document.getElementById('contributi-grid');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},300);return false;" id="nav-trasparenza">Trasparenza</a></li>
     <li><a href="#" onclick="showPage('giornale');return false;" id="nav-giornale">Alpin Munfrin</a></li>
     <li><a href="#" onclick="showPage('contatti');return false;" id="nav-contatti">Contatti</a></li>
     <li><a href="#" onclick="showPage('admin');return false;" id="nav-admin" style="opacity:0.45;font-size:0.7rem">🔒</a></li>
