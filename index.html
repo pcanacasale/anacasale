@@ -1215,7 +1215,7 @@ let giornaleData = [];
 async function caricaGiornale() {
   const grid = document.getElementById('gior-grid');
   try {
-    const data = await supaFetch('giornale?order=anno.desc,numero.asc&limit=200');
+    const data = await supaFetch('giornale?order=anno.desc,numero.desc&limit=200');
     giornaleData = data || [];
     renderGiornale(giornaleData);
   } catch(e) {
@@ -1277,7 +1277,7 @@ async function salvaGiornale() {
 async function caricaListaGiornale() {
   const el = document.getElementById('lista-giornale');
   try {
-    const data = await supaFetch('giornale?order=anno.desc,numero.asc&limit=200');
+    const data = await supaFetch('giornale?order=anno.desc,numero.desc&limit=200');
     if (!data || data.length === 0) { el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.85rem">Nessuna edizione inserita.</p>'; return; }
     el.innerHTML = data.map(g => {
       const label = g.anno + (g.numero ? ' · N. '+g.numero : '') + (g.mese ? ' · '+g.mese : '');
