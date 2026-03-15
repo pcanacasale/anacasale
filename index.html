@@ -177,6 +177,9 @@ nav {
 .vessillo-desc { font-size:0.88rem;color:var(--testo-ch);line-height:1.8;margin-bottom:1rem; }
 .vessillo-medaglie { font-size:0.82rem;color:var(--testo);line-height:1.9;white-space:pre-line;border-left:3px solid var(--oro);padding-left:1rem;background:var(--crema);border-radius:0 8px 8px 0;padding:0.8rem 1rem 0.8rem 1rem; }
 @media(max-width:640px){.vessillo-card{grid-template-columns:1fr;}}
+/* ─── ADMIN PAGE ─── */
+#page-admin { position:fixed !important; inset:0; z-index:1000; overflow-y:auto; }
+#page-admin.active { display:block !important; }
 /* ─── NOTIZIE PUBLIC ─── */
 .notizia-card { background:var(--bianco);border-radius:14px;overflow:hidden;box-shadow:0 4px 24px var(--ombra);cursor:pointer;transition:transform .2s,box-shadow .2s; }
 .notizia-card:hover { transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,58,92,0.15); }
@@ -449,39 +452,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
     <div class="container">
       <div class="section-tag">Ultime notizie</div>
       <h2 class="section-h2">Dalla Sezione</h2>
-      <div class="notizie-grid">
-        <div class="notizia-main">
-          <div class="notizia-img">??️</div>
-          <div class="notizia-content">
-            <div class="notizia-meta">Riconoscimento · 2017</div>
-            <h3>Medaglia d'Oro al Merito Civico dalla Città di Casale Monferrato</h3>
-            <p>A fronte di una lunga attività di volontariato, la Città di Casale Monferrato ha conferito alla Sezione la Medaglia d'Oro al Merito Civico in segno di gratitudine e fattivo esempio di azione solidale.</p>
-          </div>
-        </div>
-        <div class="notizie-side">
-          <div class="notizia-small">
-            <div class="ns-data">2022</div>
-            <div>
-              <h4>Inaugurato il Famedio con i resti di 6 soldati Monferrini</h4>
-              <p>Unico in Italia eretto da iniziativa privata, con 6 urne di IMI rientrate dalla Germania.</p>
-            </div>
-          </div>
-          <div class="notizia-small">
-            <div class="ns-data">2019</div>
-            <div>
-              <h4>Completata la Sala Storica in sede</h4>
-              <p>Inaugurato il nuovo piano superiore con cimeli e documenti sulla campagna di Russia.</p>
-            </div>
-          </div>
-          <div class="notizia-small">
-            <div class="ns-data">2004</div>
-            <div>
-              <h4>Recupero del Sacrario dei Caduti: 4.000 nomi</h4>
-              <p>Oltre 3.000 ore di lavoro volontario e 155.000€ raccolti per riportare alla luce la memoria.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="notizie-grid" id="home-notizie-grid"><p style="color:var(--testo-ch);font-size:0.9rem">Caricamento...</p></div>
       <div style="text-align:center;margin-top:2rem">
         <a href="#" class="btn-verde" onclick="showPage('notizie');return false;">Tutte le notizie →</a>
       </div>
@@ -778,7 +749,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
 
 
 <!-- ================== PAGE: ADMIN ================== -->
-<div class="page" id="page-admin">
+<div class="page" id="page-admin" style="min-height:100vh;background:var(--crema);padding:0">
 
   <div id="admin-login" style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--crema);padding:2rem">
     <div style="background:white;border-radius:20px;padding:2.5rem;box-shadow:0 8px 40px rgba(26,58,92,0.15);width:100%;max-width:380px">
@@ -799,7 +770,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
     </div>
   </div>
 
-  <div id="admin-dashboard" style="display:none;padding-top:70px;min-height:100vh;background:var(--crema)">
+  <div id="admin-dashboard" style="display:none;min-height:100vh;background:var(--crema)">
     <div style="background:var(--blu);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
       <div>
         <h2 style="color:white;font-size:1.2rem;font-weight:900;margin:0">Dashboard Admin</h2>
@@ -959,14 +930,22 @@ function showPage(id) {
   if(navEl) navEl.classList.add('active');
   document.getElementById('navLinks').classList.remove('open');
   document.getElementById('hamburger').classList.remove('open');
-  window.scrollTo({top:0, behavior:'smooth'});
+  // Nasconde navbar e footer in admin
+  const isAdmin = id === 'admin';
+  const navbar = document.querySelector('.navbar');
+  const footer = document.querySelector('.footer');
+  if(navbar) navbar.style.display = isAdmin ? 'none' : '';
+  if(footer) footer.style.display = isAdmin ? 'none' : '';
+  if(!isAdmin) window.scrollTo({top:0, behavior:'smooth'});
+  if(id === 'home') caricaNotizieHome();
   if(id === 'notizie') caricaNotiziePublic();
   if(id === 'sezione') { caricaPresidentiPublic(); caricaConsiglieriPublic(); }
   if(id === 'storia') { caricaStoriaPublic(); caricaVessilli_public(); }
   if(id === 'giornale') caricaGiornale();
   if(id === 'admin') {
     const u = sessionStorage.getItem('adminUser');
-    if(u) { showDashboard(u); } else { showLoginForm(); }
+    const r = sessionStorage.getItem('adminRuolo') || 'sezione';
+    if(u) { showDashboard(u, r); } else { showLoginForm(); }
   }
 }
 
@@ -975,17 +954,26 @@ function showLoginForm() {
   document.getElementById('admin-dashboard').style.display = 'none';
 }
 
-function showDashboard(username) {
+function showDashboard(username, ruolo) {
   document.getElementById('admin-login').style.display = 'none';
   document.getElementById('admin-dashboard').style.display = 'block';
-  document.getElementById('admin-welcome').textContent = 'Benvenuto, ' + username;
+  const ruoloLabel = ruolo === 'admin' ? '👑 Admin' : '✏️ Sezione';
+  document.getElementById('admin-welcome').textContent = 'Benvenuto, ' + username + ' — ' + ruoloLabel;
+  // Mostra/nascondi tab in base al ruolo
+  const tabsAdmin = ['presidenti','consiglieri','storia','vessilli'];
+  tabsAdmin.forEach(t => {
+    const btn = document.getElementById('tab-' + t + '-btn');
+    if (btn) btn.style.display = ruolo === 'admin' ? '' : 'none';
+  });
   caricaNotizie();
   caricaEventi();
   caricaListaGiornale();
-  caricaPresidentiAdmin();
-  caricaConsiglieriAdmin();
-  caricaStoriaAdmin();
-  caricaVessilli_admin();
+  if (ruolo === 'admin') {
+    caricaPresidentiAdmin();
+    caricaConsiglieriAdmin();
+    caricaStoriaAdmin();
+    caricaVessilli_admin();
+  }
 }
 
 async function adminLogin() {
@@ -994,10 +982,11 @@ async function adminLogin() {
   document.getElementById('login-error').style.display = 'none';
   if (!user || !pass) return;
   try {
-    const data = await supaFetch('utenti?username=eq.' + encodeURIComponent(user) + '&password=eq.' + encodeURIComponent(pass) + '&select=username');
+    const data = await supaFetch('utenti?username=eq.' + encodeURIComponent(user) + '&password=eq.' + encodeURIComponent(pass) + '&select=username,ruolo');
     if (data && data.length > 0) {
       sessionStorage.setItem('adminUser', data[0].username);
-      showDashboard(data[0].username);
+      sessionStorage.setItem('adminRuolo', data[0].ruolo || 'sezione');
+      showDashboard(data[0].username, data[0].ruolo || 'sezione');
     } else {
       document.getElementById('login-error').style.display = 'block';
     }
@@ -1619,6 +1608,52 @@ async function rimuoviFotoVessillo(id) {
   caricaVessilli_public();
 }
 
+async function caricaNotizieHome() {
+  const el = document.getElementById('home-notizie-grid');
+  if (!el) return;
+  try {
+    const data = await supaFetch('notizie?order=created_at.desc&limit=4');
+    if (!data || data.length === 0) {
+      el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.9rem;grid-column:1/-1">Nessuna notizia disponibile.</p>';
+      return;
+    }
+    const principale = data[0];
+    const laterali = data.slice(1);
+    const dataFmt = d => new Date(d).toLocaleDateString('it-IT', {day:'numeric', month:'long', year:'numeric'});
+
+    const imgMain = principale.foto_copertina
+      ? '<img src="' + principale.foto_copertina + '" style="width:100%;height:260px;object-fit:cover;display:block;cursor:pointer" onclick="apriNotizia(0)">'
+      : '<div class="notizia-img" style="cursor:pointer;height:180px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--verde-pale),#dbeafe);font-size:3rem" onclick="apriNotizia(0)">📰</div>';
+
+    const mainHtml = '<div class="notizia-main" onclick="apriNotizia(0)" style="cursor:pointer">' +
+      imgMain +
+      '<div class="notizia-content">' +
+      '<div class="notizia-meta">' + principale.categoria + ' · ' + dataFmt(principale.data_pubblicazione) + '</div>' +
+      '<h3>' + principale.titolo + '</h3>' +
+      '<p>' + (principale.sottotitolo || principale.contenuto.substring(0,120) + '...') + '</p>' +
+      '</div></div>';
+
+    const lateraliHtml = '<div class="notizie-side">' +
+      laterali.map((n, i) => {
+        const idx = i + 1;
+        const anno = new Date(n.data_pubblicazione).getFullYear();
+        return '<div class="notizia-small" onclick="apriNotizia(' + idx + ')">' +
+          '<div class="ns-data">' + anno + '</div>' +
+          '<div><h4>' + n.titolo + '</h4>' +
+          '<p>' + (n.sottotitolo || n.contenuto.substring(0,80) + '...') + '</p></div>' +
+          '</div>';
+      }).join('') +
+      '</div>';
+
+    el.innerHTML = mainHtml + lateraliHtml;
+
+    // Sincronizza notizieCache con i dati home così apriNotizia funziona
+    notizieCache = data;
+  } catch(e) {
+    el.innerHTML = '<p style="color:#991b1b;font-size:0.9rem">Errore caricamento notizie.</p>';
+  }
+}
+
 function toggleMenu() {
   document.getElementById('navLinks').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
@@ -1630,6 +1665,8 @@ function inviaContatto() {
   if (!nome || !email) { alert('Inserisci almeno nome ed email.'); return; }
   document.getElementById('formSuccessC').style.display = 'block';
 }
+
+caricaNotizieHome();
 </script>
 </body>
 </html>
