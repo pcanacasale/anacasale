@@ -545,6 +545,17 @@ footer a { color:var(--verde-ch); text-decoration:none; }
       </div>
     </div>
   </section>
+
+  <!-- I Gruppi -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-tag">Sul territorio</div>
+      <h2 class="section-h2">I Gruppi</h2>
+      <div class="consiglio-grid" id="gruppi-grid" style="margin-top:2rem">
+        <p style="color:var(--testo-ch);font-size:0.9rem">Caricamento...</p>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- ══════════════════ PAGE: GRUPPI ══════════════════ -->
@@ -845,6 +856,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
         <button id="tab-giornale-btn" onclick="adminTab('giornale')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📰 Alpin Munfrin</button>
         <button id="tab-presidenti-btn" onclick="adminTab('presidenti')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">🎖️ Presidenti</button>
         <button id="tab-consiglieri-btn" onclick="adminTab('consiglieri')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">👥 Consiglieri</button>
+        <button id="tab-gruppi-btn" onclick="adminTab('gruppi')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">🏘️ Gruppi</button>
         <button id="tab-storia-btn" onclick="adminTab('storia')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📜 Storia</button>
         <button id="tab-vessilli-btn" onclick="adminTab('vessilli')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">🏴 Vessilli</button>
         <button id="tab-contributi-btn" onclick="adminTab('contributi')" style="padding:0.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;background:white;color:var(--testo)">📄 Contributi</button>
@@ -951,6 +963,25 @@ footer a { color:var(--verde-ch); text-decoration:none; }
         </div>
       </div>
 
+      <div id="tab-gruppi" style="display:none">
+        <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra);margin-bottom:1.5rem">
+          <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">➕ Nuovo Gruppo</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr 80px;gap:1rem;margin-bottom:1rem">
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Nome Cognome *</label><input id="gr-nome" type="text" placeholder="es. Mario Rossi" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Nome Gruppo *</label><input id="gr-gruppo" type="text" placeholder="es. Gruppo di Casale" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Ordine</label><input id="gr-ordine" type="number" placeholder="0" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:center">
+            <button onclick="aggiungiGruppo()" style="background:var(--verde);color:white;border:none;cursor:pointer;font-family:Nunito,sans-serif;font-size:0.85rem;font-weight:800;padding:0.7rem 1.6rem;border-radius:8px">Aggiungi</button>
+            <span id="gr-feedback" style="font-size:0.82rem;font-weight:700;display:none"></span>
+          </div>
+        </div>
+        <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra)">
+          <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">🏘️ Gestisci Gruppi</h3>
+          <div id="gruppi-admin-lista"><p style="color:var(--testo-ch);font-size:0.85rem">Caricamento...</p></div>
+        </div>
+      </div>
+
       <div id="tab-storia" style="display:none">
         <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra);margin-bottom:2rem">
           <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">➕ Nuova Tappa</h3>
@@ -1041,6 +1072,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
               <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="giornale" checked> 📖 Alpin Munfrin</label>
               <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="presidenti"> 🎖️ Presidenti</label>
               <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="consiglieri"> 👥 Consiglieri</label>
+              <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="gruppi"> 🏘️ Gruppi</label>
               <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="storia"> 📜 Storia</label>
               <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="vessilli"> 🏴 Vessilli</label>
               <label style="display:flex;align-items:center;gap:0.4rem;background:#f1f5f9;border-radius:8px;padding:0.4rem 0.8rem;cursor:pointer;font-size:0.83rem;font-weight:700"><input type="checkbox" value="contributi"> 📄 Contributi</label>
@@ -1091,7 +1123,7 @@ function showPage(id) {
   if(!isAdmin) window.scrollTo({top:0, behavior:'smooth'});
   if(id === 'home') caricaNotizieHome();
   if(id === 'notizie') caricaNotiziePublic();
-  if(id === 'chisiamo') { caricaPresidentiPublic(); caricaConsiglieriPublic(); }
+  if(id === 'chisiamo') { caricaPresidentiPublic(); caricaConsiglieriPublic(); caricaGruppiPublic(); }
   if(id === 'trasparenza') caricaContributiPublic();
   if(id === 'sala-storica') { caricaTestoSalaStorica(); caricaGallerySalaStorica(); }
   if(id === 'storia') { caricaStoriaPublic(); caricaVessilli_public(); }
@@ -1131,6 +1163,7 @@ function showDashboard(username, ruolo, permessi) {
   if (ruolo === 'admin' || perm.includes('giornale')) caricaListaGiornale();
   if (ruolo === 'admin' || perm.includes('presidenti')) caricaPresidentiAdmin();
   if (ruolo === 'admin' || perm.includes('consiglieri')) caricaConsiglieriAdmin();
+  if (ruolo === 'admin' || perm.includes('gruppi')) caricaGruppiAdmin();
   if (ruolo === 'admin' || perm.includes('storia')) caricaStoriaAdmin();
   if (ruolo === 'admin' || perm.includes('vessilli')) caricaVessilli_admin();
   if (ruolo === 'admin' || perm.includes('contributi')) caricaContributiAdmin();
@@ -1163,7 +1196,7 @@ function adminLogout() {
 }
 
 function adminTab(tab) {
-  ['notizie','giornale','presidenti','consiglieri','storia','vessilli','contributi','sala-storica','utenti'].forEach(t => {
+  ['notizie','giornale','presidenti','consiglieri','gruppi','storia','vessilli','contributi','sala-storica','utenti'].forEach(t => {
     const panel = document.getElementById('tab-'+t);
     if(panel) panel.style.display = tab === t ? 'block' : 'none';
     const btn = document.getElementById('tab-'+t+'-btn');
@@ -1172,6 +1205,7 @@ function adminTab(tab) {
   if(tab === 'giornale') caricaListaGiornale();
   if(tab === 'presidenti') caricaPresidentiAdmin();
   if(tab === 'consiglieri') caricaConsiglieriAdmin();
+  if(tab === 'gruppi') caricaGruppiAdmin();
   if(tab === 'storia') caricaStoriaAdmin();
   if(tab === 'vessilli') caricaVessilli_admin();
   if(tab === 'contributi') caricaContributiAdmin();
@@ -2405,6 +2439,140 @@ async function eliminaFotoSalaStorica(id) {
   caricaFotoListaAdmin();
   caricaGallerySalaStorica();
 }
+
+async function caricaGruppiPublic() {
+  const el = document.getElementById('gruppi-grid');
+  if (!el) return;
+  try {
+    const data = await supaFetch('gruppi?order=ordine.asc,nome_gruppo.asc');
+    if (!data || data.length === 0) {
+      el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.9rem">Nessun gruppo disponibile.</p>';
+      return;
+    }
+    el.innerHTML = data.map(g =>
+      '<div class="cons-card">' +
+      '<div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--blu),var(--verde));display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:1rem;flex-shrink:0;border:2px solid var(--oro)">' +
+      g.nome.charAt(0) + '</div>' +
+      '<div><h4>' + g.nome + '</h4><p>' + g.nome_gruppo + '</p></div>' +
+      '</div>'
+    ).join('');
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore caricamento.</p>'; }
+}
+
+async function caricaGruppiAdmin() {
+  const el = document.getElementById('gruppi-admin-lista');
+  if (!el) return;
+  try {
+    const data = await supaFetch('gruppi?order=ordine.asc,nome_gruppo.asc');
+    if (!data || data.length === 0) { el.innerHTML = '<p>Nessun gruppo.</p>'; return; }
+    el.innerHTML = '';
+    data.forEach((g, idx) => {
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'margin-bottom:0.8rem';
+
+      const div = document.createElement('div');
+      div.style.cssText = 'background:#f8fafc;border-radius:12px;padding:0.9rem 1rem;display:flex;align-items:center;gap:0.8rem;box-shadow:0 2px 10px var(--ombra)';
+      div.innerHTML =
+        '<div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--blu),var(--verde));display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:0.9rem;flex-shrink:0">' + g.nome.charAt(0) + '</div>' +
+        '<div style="flex:1;min-width:0"><div style="font-size:0.7rem;font-weight:800;color:var(--verde);text-transform:uppercase">' + g.nome_gruppo + '</div>' +
+        '<div style="font-weight:800;color:var(--blu);font-size:0.88rem">' + g.nome + '</div></div>';
+
+      // Frecce ordine
+      const btnUp = document.createElement('button');
+      btnUp.textContent = '▲'; btnUp.title = 'Sposta su';
+      btnUp.style.cssText = 'background:#e0e7ff;color:#3730a3;border:none;border-radius:6px;padding:0.35rem 0.55rem;font-size:0.75rem;cursor:pointer';
+      btnUp.addEventListener('click', () => spostaGruppo(data, idx, -1));
+
+      const btnDown = document.createElement('button');
+      btnDown.textContent = '▼'; btnDown.title = 'Sposta giù';
+      btnDown.style.cssText = 'background:#e0e7ff;color:#3730a3;border:none;border-radius:6px;padding:0.35rem 0.55rem;font-size:0.75rem;cursor:pointer';
+      btnDown.addEventListener('click', () => spostaGruppo(data, idx, +1));
+
+      // Modifica
+      const btnEdit = document.createElement('button');
+      btnEdit.textContent = '✏️'; btnEdit.title = 'Modifica';
+      btnEdit.style.cssText = 'background:#fef9c3;color:#854d0e;border:none;border-radius:6px;padding:0.35rem 0.6rem;font-size:0.78rem;cursor:pointer';
+      btnEdit.addEventListener('click', () => toggleEditGruppo(g.id));
+
+      // Elimina
+      const btnDel = document.createElement('button');
+      btnDel.textContent = '🗑️'; btnDel.title = 'Elimina';
+      btnDel.style.cssText = 'background:#fee2e2;color:#991b1b;border:none;border-radius:6px;padding:0.35rem 0.55rem;font-size:0.78rem;cursor:pointer';
+      btnDel.addEventListener('click', () => eliminaGruppo(g.id, g.nome));
+
+      div.appendChild(btnUp); div.appendChild(btnDown);
+      div.appendChild(btnEdit); div.appendChild(btnDel);
+
+      // Form modifica
+      const editDiv = document.createElement('div');
+      editDiv.id = 'gruppo-edit-' + g.id;
+      editDiv.style.cssText = 'display:none;background:#fffbeb;border-radius:0 0 12px 12px;padding:1rem;border:1.5px solid #fde68a;border-top:none;display:none;gap:0.8rem;flex-wrap:wrap';
+      editDiv.innerHTML =
+        '<input id="ge-nome-' + g.id + '" type="text" value="' + g.nome.replace(/"/g,'&quot;') + '" placeholder="Nome Cognome" style="flex:1;min-width:140px;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.8rem;outline:none">' +
+        '<input id="ge-gruppo-' + g.id + '" type="text" value="' + g.nome_gruppo.replace(/"/g,'&quot;') + '" placeholder="Nome Gruppo" style="flex:1;min-width:140px;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.8rem;outline:none">' +
+        '<input id="ge-ordine-' + g.id + '" type="number" value="' + g.ordine + '" placeholder="Ordine" style="width:70px;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.5rem 0.8rem;outline:none">' +
+        '<button class="btn-salva-gruppo" data-gid="' + g.id + '" style="background:var(--blu);color:white;border:none;border-radius:8px;padding:0.5rem 1rem;font-family:Nunito,sans-serif;font-size:0.83rem;font-weight:800;cursor:pointer">Salva</button>' +
+        '<button class="btn-annulla-gruppo" data-gid="' + g.id + '" style="background:#e2e8f0;color:var(--testo);border:none;border-radius:8px;padding:0.5rem 0.8rem;font-family:Nunito,sans-serif;font-size:0.83rem;font-weight:700;cursor:pointer">✕</button>';
+
+      wrapper.appendChild(div);
+      wrapper.appendChild(editDiv);
+      el.appendChild(wrapper);
+    });
+  } catch(e) { el.innerHTML = '<p style="color:#991b1b">Errore: ' + e.message + '</p>'; }
+}
+
+function toggleEditGruppo(id) {
+  const el = document.getElementById('gruppo-edit-' + id);
+  if (!el) return;
+  el.style.display = el.style.display === 'flex' ? 'none' : 'flex';
+}
+
+async function salvaModificaGruppo(id) {
+  const nome = document.getElementById('ge-nome-' + id).value.trim();
+  const nome_gruppo = document.getElementById('ge-gruppo-' + id).value.trim();
+  const ordine = parseInt(document.getElementById('ge-ordine-' + id).value) || 0;
+  if (!nome || !nome_gruppo) { alert('Nome e gruppo obbligatori'); return; }
+  await supaFetch('gruppi?id=eq.' + id, { method: 'PATCH', body: JSON.stringify({ nome, nome_gruppo, ordine }) });
+  caricaGruppiAdmin(); caricaGruppiPublic();
+}
+
+async function spostaGruppo(lista, idx, dir) {
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= lista.length) return;
+  const a = lista[idx], b = lista[newIdx];
+  await supaFetch('gruppi?id=eq.' + a.id, { method: 'PATCH', body: JSON.stringify({ ordine: b.ordine }) });
+  await supaFetch('gruppi?id=eq.' + b.id, { method: 'PATCH', body: JSON.stringify({ ordine: a.ordine }) });
+  caricaGruppiAdmin(); caricaGruppiPublic();
+}
+
+async function aggiungiGruppo() {
+  const nome = document.getElementById('gr-nome').value.trim();
+  const nome_gruppo = document.getElementById('gr-gruppo').value.trim();
+  const ordine = parseInt(document.getElementById('gr-ordine').value) || 0;
+  const fb = document.getElementById('gr-feedback');
+  if (!nome || !nome_gruppo) { fb.textContent='⚠️ Nome e gruppo obbligatori'; fb.style.color='#b45309'; fb.style.display='inline'; return; }
+  try {
+    await supaFetch('gruppi', { method: 'POST', body: JSON.stringify({ nome, nome_gruppo, ordine }) });
+    fb.textContent='✅ Aggiunto!'; fb.style.color='var(--verde)'; fb.style.display='inline';
+    document.getElementById('gr-nome').value='';
+    document.getElementById('gr-gruppo').value='';
+    document.getElementById('gr-ordine').value='';
+    setTimeout(()=>fb.style.display='none', 3000);
+    caricaGruppiAdmin(); caricaGruppiPublic();
+  } catch(e) { fb.textContent='❌ ' + e.message; fb.style.color='#991b1b'; fb.style.display='inline'; }
+}
+
+async function eliminaGruppo(id, nome) {
+  if (!confirm('Eliminare ' + nome + '?')) return;
+  await supaFetch('gruppi?id=eq.' + id, { method: 'DELETE' });
+  caricaGruppiAdmin(); caricaGruppiPublic();
+}
+
+// Aggiungi ai listener esistenti
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('btn-salva-gruppo')) salvaModificaGruppo(e.target.dataset.gid);
+  if (e.target.classList.contains('btn-annulla-gruppo')) toggleEditGruppo(e.target.dataset.gid);
+});
 
 function toggleMenu() {
   document.getElementById('navLinks').classList.toggle('open');
