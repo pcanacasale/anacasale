@@ -221,7 +221,7 @@ nav {
 /* ─── NOTIZIE PUBLIC ─── */
 .notizia-card { background:var(--bianco);border-radius:14px;overflow:hidden;box-shadow:0 4px 24px var(--ombra);cursor:pointer;transition:transform .2s,box-shadow .2s; }
 .notizia-card:hover { transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,58,92,0.15); }
-.notizia-card-img { width:100%;height:auto;object-fit:contain;display:block;background:#f8f8f8; }
+.notizia-card-img { width:100%;height:220px;object-fit:contain;display:block;background:#f8f8f8; }
 .notizia-card-placeholder { width:100%;height:180px;background:linear-gradient(135deg,var(--verde-pale),#dbeafe);display:flex;align-items:center;justify-content:center;font-size:3rem; }
 .notizia-card-body { padding:1.5rem; }
 .notizia-card-meta { font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--verde);margin-bottom:0.5rem; }
@@ -1365,18 +1365,110 @@ function goSlide(j) {
 async function caricaNotizie() {
   const el = document.getElementById('lista-notizie');
   try {
-    const data = await supaFetch('notizie?order=created_at.desc&limit=20');
+    const data = await supaFetch('notizie?order=created_at.desc&limit=50');
     if (!data || data.length === 0) { el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.85rem">Nessuna notizia pubblicata.</p>'; return; }
-    el.innerHTML = data.map(n => `
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:1rem;border-radius:10px;border:1px solid #f0f0f0;gap:1rem">
-        <div style="flex:1">
-          <div style="font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--verde);margin-bottom:0.2rem">${n.categoria} · ${new Date(n.data_pubblicazione).toLocaleDateString('it-IT')}</div>
-          <div style="font-size:0.9rem;font-weight:800;color:var(--blu)">${n.titolo}</div>
-          <div style="font-size:0.8rem;color:var(--testo-ch);margin-top:0.3rem;line-height:1.5">${n.contenuto.substring(0,120)}${n.contenuto.length>120?'…':''}</div>
-        </div>
-        <button onclick="eliminaNotizia('${n.id}')" style="background:#fee2e2;color:#991b1b;border:none;border-radius:8px;padding:0.4rem 0.8rem;font-size:0.75rem;font-weight:700;cursor:pointer;flex-shrink:0">🗑 Elimina</button>
-      </div>`).join('');
+    el.innerHTML = '';
+    data.forEach(n => {
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'margin-bottom:0.8rem';
+
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;align-items:center;gap:0.8rem;padding:0.9rem 1rem;background:#f8fafc;border-radius:12px;box-shadow:0 2px 8px var(--ombra)';
+
+      if (n.foto_copertina) {
+        const img = document.createElement('img');
+        img.src = n.foto_copertina;
+        img.style.cssText = 'width:56px;height:56px;object-fit:cover;border-radius:8px;flex-shrink:0';
+        row.appendChild(img);
+      }
+
+      const info = document.createElement('div');
+      info.style.cssText = 'flex:1;min-width:0';
+      info.innerHTML = '<div style="font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--verde)">' + n.categoria + ' · ' + new Date(n.data_pubblicazione).toLocaleDateString('it-IT') + '</div>' +
+        '<div style="font-size:0.9rem;font-weight:800;color:var(--blu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + n.titolo + '</div>';
+      row.appendChild(info);
+
+      const btnEdit = document.createElement('button');
+      btnEdit.textContent = '✏️'; btnEdit.title = 'Modifica';
+      btnEdit.style.cssText = 'background:#fef9c3;color:#854d0e;border:none;border-radius:6px;padding:0.35rem 0.6rem;font-size:0.78rem;cursor:pointer;flex-shrink:0';
+      btnEdit.addEventListener('click', () => toggleEditNotizia(n.id));
+
+      const btnDel = document.createElement('button');
+      btnDel.textContent = '🗑️'; btnDel.title = 'Elimina';
+      btnDel.style.cssText = 'background:#fee2e2;color:#991b1b;border:none;border-radius:6px;padding:0.35rem 0.55rem;font-size:0.78rem;cursor:pointer;flex-shrink:0';
+      btnDel.addEventListener('click', () => eliminaNotizia(n.id));
+
+      row.appendChild(btnEdit);
+      row.appendChild(btnDel);
+
+      // Form modifica
+      const editDiv = document.createElement('div');
+      editDiv.id = 'notizia-edit-' + n.id;
+      editDiv.style.cssText = 'display:none;flex-direction:column;gap:0.8rem;background:#fffbeb;border-radius:0 0 12px 12px;padding:1.2rem;border:1.5px solid #fde68a;border-top:none';
+
+      const row1 = document.createElement('div');
+      row1.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:0.8rem';
+      row1.innerHTML =
+        '<input id="ne-titolo-' + n.id + '" type="text" value="' + n.titolo.replace(/"/g,'&quot;') + '" placeholder="Titolo" style="font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.55rem 0.8rem;outline:none">' +
+        '<select id="ne-cat-' + n.id + '" style="font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.55rem 0.8rem;outline:none;background:white">' +
+        ['Comunicato','Protezione Civile','Riconoscimento','Patrimonio storico','Solidarietà'].map(c =>
+          '<option' + (n.categoria === c ? ' selected' : '') + '>' + c + '</option>'
+        ).join('') + '</select>';
+
+      const row2 = document.createElement('input');
+      row2.id = 'ne-sub-' + n.id; row2.type = 'text';
+      row2.value = n.sottotitolo || '';
+      row2.placeholder = 'Sottotitolo';
+      row2.style.cssText = 'font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.55rem 0.8rem;outline:none';
+
+      const row3 = document.createElement('textarea');
+      row3.id = 'ne-testo-' + n.id; row3.rows = 4;
+      row3.value = n.contenuto || '';
+      row3.placeholder = 'Testo';
+      row3.style.cssText = 'font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.55rem 0.8rem;outline:none;resize:vertical';
+
+      const row4 = document.createElement('div');
+      row4.style.cssText = 'display:flex;gap:0.8rem;align-items:center';
+      const btnSalva = document.createElement('button');
+      btnSalva.textContent = 'Salva modifiche';
+      btnSalva.style.cssText = 'background:var(--blu);color:white;border:none;border-radius:8px;padding:0.5rem 1.2rem;font-family:Nunito,sans-serif;font-size:0.83rem;font-weight:800;cursor:pointer';
+      btnSalva.addEventListener('click', () => salvaModificaNotizia(n.id));
+      const btnAnnulla = document.createElement('button');
+      btnAnnulla.textContent = '✕ Annulla';
+      btnAnnulla.style.cssText = 'background:#e2e8f0;color:var(--testo);border:none;border-radius:8px;padding:0.5rem 0.8rem;font-family:Nunito,sans-serif;font-size:0.83rem;font-weight:700;cursor:pointer';
+      btnAnnulla.addEventListener('click', () => toggleEditNotizia(n.id));
+      row4.appendChild(btnSalva);
+      row4.appendChild(btnAnnulla);
+
+      editDiv.appendChild(row1);
+      editDiv.appendChild(row2);
+      editDiv.appendChild(row3);
+      editDiv.appendChild(row4);
+
+      wrapper.appendChild(row);
+      wrapper.appendChild(editDiv);
+      el.appendChild(wrapper);
+    });
   } catch(e) { el.innerHTML = '<p style="color:#991b1b;font-size:0.85rem">Errore caricamento.</p>'; }
+}
+
+function toggleEditNotizia(id) {
+  const el = document.getElementById('notizia-edit-' + id);
+  if (!el) return;
+  el.style.display = el.style.display === 'flex' ? 'none' : 'flex';
+}
+
+async function salvaModificaNotizia(id) {
+  const titolo = document.getElementById('ne-titolo-' + id).value.trim();
+  const categoria = document.getElementById('ne-cat-' + id).value;
+  const sottotitolo = document.getElementById('ne-sub-' + id).value.trim();
+  const contenuto = document.getElementById('ne-testo-' + id).value.trim();
+  if (!titolo || !contenuto) { alert('Titolo e testo obbligatori'); return; }
+  await supaFetch('notizie?id=eq.' + id, { method: 'PATCH', body: JSON.stringify({ titolo, categoria, sottotitolo: sottotitolo || null, contenuto }) });
+  toggleEditNotizia(id);
+  caricaNotizie();
+  caricaNotiziePublic();
+  caricaNotizieHome();
 }
 
 async function eliminaNotizia(id) {
