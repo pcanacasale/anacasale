@@ -1293,7 +1293,7 @@ async function caricaNotiziePublic() {
     el.innerHTML = data.map((n,i) => {
       const data_str = new Date(n.data_pubblicazione).toLocaleDateString('it-IT', {day:'numeric', month:'long', year:'numeric'});
       const img = n.foto_copertina
-        ? '<img class="notizia-card-img" src="' + n.foto_copertina + '" alt="">'
+        ? '<img class="notizia-card-img" src="' + n.foto_copertina + '" alt="" style="object-position:' + (n.foto_posizione || 'center') + '">'
         : '<div class="notizia-card-placeholder">📰</div>';
       return '<div class="notizia-card" onclick="apriNotizia(' + i + ')">' +
         img +
@@ -1440,9 +1440,42 @@ async function caricaNotizie() {
       row4.appendChild(btnSalva);
       row4.appendChild(btnAnnulla);
 
+      // Sezione foto
+      const rowFoto = document.createElement('div');
+      rowFoto.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.8rem;align-items:flex-start;padding:0.8rem;background:#f1f5f9;border-radius:10px';
+
+      // Anteprima foto attuale
+      const fotoPreview = document.createElement('div');
+      fotoPreview.style.cssText = 'display:flex;flex-direction:column;gap:0.5rem';
+      if (n.foto_copertina) {
+        fotoPreview.innerHTML =
+          '<img src="' + n.foto_copertina + '" style="width:120px;height:80px;object-fit:cover;border-radius:8px;border:2px solid #e2e8f0">' +
+          '<button data-nid="' + n.id + '" class="btn-rimuovi-copertina" style="background:#fee2e2;color:#991b1b;border:none;border-radius:6px;padding:0.3rem 0.7rem;font-size:0.75rem;font-weight:700;cursor:pointer">🚫 Rimuovi</button>';
+      } else {
+        fotoPreview.innerHTML = '<div style="width:120px;height:80px;background:#e2e8f0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.5rem">📷</div>' +
+          '<div style="font-size:0.72rem;color:var(--testo-ch);text-align:center">Nessuna foto</div>';
+      }
+      rowFoto.appendChild(fotoPreview);
+
+      const fotoControls = document.createElement('div');
+      fotoControls.style.cssText = 'display:flex;flex-direction:column;gap:0.5rem;flex:1';
+      fotoControls.innerHTML =
+        '<label style="font-size:0.72rem;font-weight:700;color:var(--testo-ch)">Sostituisci foto copertina</label>' +
+        '<input id="ne-foto-' + n.id + '" type="file" accept="image/*" style="font-family:Nunito,sans-serif;font-size:0.8rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.4rem 0.7rem;background:white">' +
+        '<label style="font-size:0.72rem;font-weight:700;color:var(--testo-ch);margin-top:0.3rem">Posizione anteprima nella card</label>' +
+        '<select id="ne-pos-' + n.id + '" style="font-family:Nunito,sans-serif;font-size:0.83rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.4rem 0.7rem;outline:none;background:white">' +
+        '<option value="center">Centro</option>' +
+        '<option value="top">Alto</option>' +
+        '<option value="bottom">Basso</option>' +
+        '<option value="left">Sinistra</option>' +
+        '<option value="right">Destra</option>' +
+        '</select>';
+      rowFoto.appendChild(fotoControls);
+
       editDiv.appendChild(row1);
       editDiv.appendChild(row2);
       editDiv.appendChild(row3);
+      editDiv.appendChild(rowFoto);
       editDiv.appendChild(row4);
 
       wrapper.appendChild(row);
@@ -1463,13 +1496,35 @@ async function salvaModificaNotizia(id) {
   const categoria = document.getElementById('ne-cat-' + id).value;
   const sottotitolo = document.getElementById('ne-sub-' + id).value.trim();
   const contenuto = document.getElementById('ne-testo-' + id).value.trim();
+  const posizione = document.getElementById('ne-pos-' + id) ? document.getElementById('ne-pos-' + id).value : 'center';
   if (!titolo || !contenuto) { alert('Titolo e testo obbligatori'); return; }
-  await supaFetch('notizie?id=eq.' + id, { method: 'PATCH', body: JSON.stringify({ titolo, categoria, sottotitolo: sottotitolo || null, contenuto }) });
+
+  let aggiornamenti = { titolo, categoria, sottotitolo: sottotitolo || null, contenuto, foto_posizione: posizione };
+
+  // Upload nuova foto copertina se selezionata
+  const fotoInput = document.getElementById('ne-foto-' + id);
+  if (fotoInput && fotoInput.files[0]) {
+    const file = fotoInput.files[0];
+    const url = await uploadFoto(file);
+    aggiornamenti.foto_copertina = url;
+  }
+
+  await supaFetch('notizie?id=eq.' + id, { method: 'PATCH', body: JSON.stringify(aggiornamenti) });
   toggleEditNotizia(id);
   caricaNotizie();
   caricaNotiziePublic();
   caricaNotizieHome();
 }
+
+// Listener per rimuovere foto copertina
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('btn-rimuovi-copertina')) {
+    const nid = e.target.dataset.nid;
+    if (!confirm('Rimuovere la foto copertina?')) return;
+    supaFetch('notizie?id=eq.' + nid, { method: 'PATCH', body: JSON.stringify({ foto_copertina: null }) })
+      .then(() => { caricaNotizie(); caricaNotiziePublic(); caricaNotizieHome(); });
+  }
+});
 
 async function eliminaNotizia(id) {
   if (!confirm('Eliminare questa notizia?')) return;
