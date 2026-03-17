@@ -1446,7 +1446,7 @@ async function caricaNotizie() {
       row1.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:0.8rem';
       row1.innerHTML =
         '<input id="ne-titolo-' + n.id + '" type="text" value="' + n.titolo.replace(/"/g,'&quot;') + '" placeholder="Titolo" style="font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.55rem 0.8rem;outline:none">' +
-        '<select id="ne-cat-' + n.id + '" style="font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.55rem 0.8rem;outline:none;background:white"><option>Caricamento...</option></select>';
+        '<select id="ne-cat-' + n.id + '" data-current="' + (n.categoria || '') + '" style="font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.55rem 0.8rem;outline:none;background:white"><option>Caricamento...</option></select>';
       // Popola select categorie modifica
       popolaSelectCategorie('ne-cat-' + n.id, n.categoria);
       // Aggiungi campo data modifica
@@ -1531,7 +1531,19 @@ async function caricaNotizie() {
 function toggleEditNotizia(id) {
   const el = document.getElementById('notizia-edit-' + id);
   if (!el) return;
-  el.style.display = el.style.display === 'flex' ? 'none' : 'flex';
+  const isOpen = el.style.display === 'flex';
+  el.style.display = isOpen ? 'none' : 'flex';
+  // Ricarica categorie ogni volta che si apre il form
+  if (!isOpen) {
+    if (_categorie.length > 0) {
+      popolaSelectCategorie('ne-cat-' + id, document.getElementById('ne-cat-' + id).dataset.current);
+    } else {
+      supaFetch('categorie_notizie?order=ordine.asc,nome.asc').then(data => {
+        _categorie = data || [];
+        popolaSelectCategorie('ne-cat-' + id, document.getElementById('ne-cat-' + id).dataset.current);
+      });
+    }
+  }
 }
 
 async function salvaModificaNotizia(id) {
