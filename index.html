@@ -1676,7 +1676,7 @@ function renderGiornale(items) {
   if(count) count.textContent = items.length + ' edizioni';
   grid.innerHTML = items.map(g => {
     const label = [g.numero ? 'N. ' + g.numero : '', g.mese || ''].filter(Boolean).join(' · ');
-    const url = GITHUB_BASE + encodeURIComponent(g.url_pdf);
+    const url = g.url_pdf.startsWith('http') ? g.url_pdf : GITHUB_BASE + encodeURIComponent(g.url_pdf);
     return `<a href="${url}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;background:white;border-radius:14px;padding:1.4rem 1rem;box-shadow:0 4px 20px var(--ombra);text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;border:1.5px solid transparent" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 30px rgba(26,58,92,0.15)';this.style.borderColor='var(--verde)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px var(--ombra)';this.style.borderColor='transparent'">
       <div style="font-size:2rem;margin-bottom:0.6rem">📄</div>
       <div style="font-size:1.5rem;font-weight:900;color:var(--blu);line-height:1">${g.anno}</div>
