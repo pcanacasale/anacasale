@@ -264,20 +264,43 @@ nav {
 .evento-luogo { padding:0.8rem 1.5rem; border-top:1px solid #f0f0f0; font-size:0.75rem; color:var(--testo-ch); font-weight:600; display:flex; align-items:center; gap:6px; }
 
 /* ─── NOTIZIE ─── */
-.notizie-grid { display:grid; grid-template-columns:1.6fr 1fr; gap:2rem; margin-top:2.5rem; }
-.notizia-main { background:var(--bianco); border-radius:16px; overflow:hidden; box-shadow:0 4px 24px var(--ombra); transition:transform .22s; }
-.notizia-main:hover { transform:translateY(-4px); }
-.notizia-img { width:100%; aspect-ratio:16/9; background:linear-gradient(135deg, #dbeafe 0%, #d8f3dc 100%); display:flex; align-items:center; justify-content:center; font-size:4rem; }
-.notizia-content { padding:1.6rem; }
-.notizia-meta { font-size:0.7rem; font-weight:700; color:var(--testo-ch); text-transform:uppercase; letter-spacing:1px; margin-bottom:0.6rem; }
-.notizia-content h3 { font-size:1.2rem; font-weight:800; color:var(--blu); margin-bottom:0.7rem; line-height:1.3; }
-.notizia-content p { font-size:0.87rem; color:var(--testo-ch); line-height:1.8; }
-.notizie-side { display:flex; flex-direction:column; gap:1rem; }
-.notizia-small { background:var(--bianco); border-radius:12px; padding:1.2rem; box-shadow:0 4px 16px var(--ombra); transition:transform .22s; display:flex; gap:1rem; align-items:flex-start; cursor:pointer; }
-.notizia-small:hover { transform:translateX(4px); }
-.notizia-small .ns-data { font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--verde); flex-shrink:0; padding-top:2px; }
-.notizia-small h4 { font-size:0.87rem; font-weight:800; color:var(--blu); margin-bottom:0.3rem; line-height:1.3; }
-.notizia-small p { font-size:0.78rem; color:var(--testo-ch); line-height:1.6; }
+/* ─── HOME EVENTI ─── */
+.eventi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:2rem; }
+.evento-card { background:var(--bianco); border-radius:14px; overflow:hidden; box-shadow:0 4px 24px var(--ombra); cursor:pointer; transition:transform .2s,box-shadow .2s; }
+.evento-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(26,58,92,0.15); }
+.evento-card-foto { width:100%; height:90px; object-fit:cover; display:block; }
+.evento-card-foto-ph { width:100%; height:90px; background:linear-gradient(135deg,var(--blu) 0%,#2e6da4 100%); display:flex; align-items:center; justify-content:center; }
+.evento-card-top { background:var(--blu); padding:8px 12px; display:flex; align-items:center; gap:8px; }
+.evento-data-box { background:white; border-radius:6px; text-align:center; padding:3px 8px; min-width:36px; flex-shrink:0; }
+.evento-data-box .ev-day { font-size:1.1rem; font-weight:900; color:var(--blu); line-height:1; }
+.evento-data-box .ev-month { font-size:0.6rem; color:var(--blu); text-transform:uppercase; letter-spacing:0.5px; font-weight:800; }
+.evento-badge { font-size:0.65rem; color:rgba(255,255,255,0.85); background:rgba(255,255,255,0.15); padding:2px 8px; border-radius:20px; font-weight:700; }
+.evento-countdown { font-size:0.65rem; color:#a3c4e0; margin-left:auto; white-space:nowrap; font-weight:700; }
+.evento-card-body { padding:10px 14px 14px; }
+.evento-card-titolo { font-size:0.9rem; font-weight:800; color:var(--blu); margin-bottom:3px; line-height:1.3; }
+.evento-card-luogo { font-size:0.75rem; color:var(--testo-ch); }
+/* ─── AGENDA NOTIZIE ─── */
+.agenda-mese-header { display:flex; align-items:center; gap:1rem; margin:2rem 0 1rem; }
+.agenda-mese-nome { font-size:1.1rem; font-weight:900; color:var(--blu); white-space:nowrap; }
+.agenda-mese-line { flex:1; height:1.5px; background:var(--verde-pale); }
+.agenda-mese-count { font-size:0.72rem; font-weight:700; color:var(--testo-ch); text-transform:uppercase; letter-spacing:1px; white-space:nowrap; }
+.agenda-item { display:flex; gap:12px; padding:12px 14px; background:var(--bianco); border-radius:12px; box-shadow:0 2px 12px var(--ombra); margin-bottom:8px; cursor:pointer; align-items:center; transition:transform .18s,box-shadow .18s; }
+.agenda-item:hover { transform:translateX(4px); box-shadow:0 6px 24px rgba(26,58,92,0.12); }
+.agenda-data-col { text-align:center; min-width:36px; flex-shrink:0; }
+.agenda-data-col .ag-day { font-size:1.3rem; font-weight:900; color:var(--blu); line-height:1; }
+.agenda-data-col .ag-wday { font-size:0.62rem; color:var(--testo-ch); text-transform:uppercase; font-weight:700; }
+.agenda-sep { width:1.5px; background:var(--verde-pale); align-self:stretch; margin:2px 0; flex-shrink:0; }
+.agenda-content { flex:1; min-width:0; }
+.agenda-cat-badge { display:inline-block; font-size:0.65rem; font-weight:800; padding:2px 9px; border-radius:20px; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px; }
+.agenda-titolo { font-size:0.9rem; font-weight:800; color:var(--blu); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.agenda-sub { font-size:0.75rem; color:var(--testo-ch); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.agenda-thumb { width:60px; height:46px; border-radius:8px; object-fit:cover; flex-shrink:0; display:block; }
+.agenda-thumb-ph { width:60px; height:46px; border-radius:8px; flex-shrink:0; background:linear-gradient(135deg,#d0dce8,#b8cad8); }
+.agenda-evento-dot { width:7px; height:7px; border-radius:50%; background:var(--verde); flex-shrink:0; }
+.agenda-filtri { display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center; margin-bottom:1.5rem; }
+.agenda-filtro { font-size:0.75rem; font-weight:700; padding:4px 14px; border-radius:20px; border:1.5px solid #e2e8f0; cursor:pointer; background:var(--bianco); color:var(--testo-ch); transition:all .15s; }
+.agenda-filtro.attivo { background:var(--blu); color:white; border-color:var(--blu); }
+@media(max-width:640px){ .eventi-grid { grid-template-columns:1fr; } }
 
 /* ─── GRUPPI PREVIEW ─── */
 .gruppi-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-top:2.5rem; }
@@ -399,7 +422,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   .nav-links a { display:block; padding:1rem 1.5rem; border-radius:10px; font-size:1rem; text-align:center; font-weight:800; letter-spacing:1px; color:rgba(255,255,255,0.8); }
   .nav-links a:hover, .nav-links a.active { background:rgba(255,255,255,0.12); color:white; }
   .hamburger { display:flex; z-index:200; }
-  .hero-inner, .storia-strip, .contatti-grid, .notizie-grid { grid-template-columns:1fr; gap:2rem; }
+  .hero-inner, .storia-strip, .contatti-grid { grid-template-columns:1fr; gap:2rem; }
   .valori-grid, .eventi-grid, .gruppi-full-grid, .presidenti-grid, .consiglio-grid { grid-template-columns:1fr; }
   .gruppi-strip { grid-template-columns:1fr 1fr; }
   .form-grid { grid-template-columns:1fr; }
@@ -489,8 +512,8 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   <!-- Notizie -->
   <section class="section section-white">
     <div class="container">
-      <h2 class="section-h2">Ultime notizie Dalla Sezione</h2>
-      <div class="notizie-grid" id="home-notizie-grid"><p style="color:var(--testo-ch);font-size:0.9rem">Caricamento...</p></div>
+      <h2 class="section-h2" id="home-notizie-titolo">Prossimi eventi</h2>
+      <div class="eventi-grid" id="home-notizie-grid"><p style="color:var(--testo-ch);font-size:0.9rem">Caricamento...</p></div>
       <div style="text-align:center;margin-top:2rem">
         <a href="#" class="btn-verde" onclick="showPage('notizie');return false;">Tutte le notizie →</a>
       </div>
@@ -692,7 +715,10 @@ footer a { color:var(--verde-ch); text-decoration:none; }
   </div>
   <section class="section section-light">
     <div class="container">
-      <div id="notizie-lista" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.8rem">
+      <div class="agenda-filtri" id="agenda-filtri">
+        <span class="agenda-filtro attivo" onclick="filtraAgenda('tutti',this)">Tutti</span>
+      </div>
+      <div id="notizie-lista">
         <p style="color:var(--testo-ch);font-size:0.9rem">Caricamento notizie...</p>
       </div>
     </div>
@@ -915,6 +941,11 @@ footer a { color:var(--verde-ch); text-decoration:none; }
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
             <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Sottotitolo</label><input id="n-sottotitolo" type="text" placeholder="Breve descrizione" style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
             <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Data pubblicazione</label><input id="n-data" type="date" style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+          </div>
+          <div style="margin-bottom:1rem;background:#f0f7f4;border-radius:10px;padding:0.9rem 1rem;border:1.5px solid #c6e6d8">
+            <label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">📅 Data evento <span style="font-size:0.65rem;background:#1a3a5c;color:white;padding:1px 7px;border-radius:20px;font-weight:700;vertical-align:middle">NUOVO</span></label>
+            <input id="n-data-evento" type="date" style="width:100%;font-family:'Nunito',sans-serif;font-size:0.85rem;border:1.5px solid #c6e6d8;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none">
+            <p style="font-size:0.72rem;color:var(--testo-ch);margin-top:0.4rem;line-height:1.5">Compilare solo se la notizia riguarda un evento con data precisa (adunata, cerimonia, esercitazione…). Se presente, l'evento appare nella sezione <strong>prossimi eventi</strong> in home e viene ordinato per data nell'agenda.</p>
           </div>
           <div style="margin-bottom:1rem">
             <label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Foto copertina</label>
@@ -1320,12 +1351,15 @@ async function salvaNotizia() {
 
     const payload = { titolo, contenuto, categoria, sottotitolo: sottotitolo||null, foto_copertina, foto_extra };
     if (data_raw) payload.data_pubblicazione = data_raw;
+    const data_evento_raw = document.getElementById('n-data-evento').value;
+    payload.data_evento = data_evento_raw || null;
     await supaFetch('notizie', { method:'POST', body: JSON.stringify(payload) });
     fb.textContent = '✅ Pubblicata!'; fb.style.color='var(--verde)'; fb.style.display='inline';
     document.getElementById('n-titolo').value = '';
     document.getElementById('n-contenuto').value = '';
     document.getElementById('n-sottotitolo').value = '';
     if(document.getElementById('n-data')) document.getElementById('n-data').value = '';
+    document.getElementById('n-data-evento').value = '';
     document.getElementById('n-foto-file').value = '';
     document.getElementById('n-foto-extra').value = '';
     setTimeout(() => fb.style.display='none', 3000);
@@ -1335,31 +1369,111 @@ async function salvaNotizia() {
 
 let notizieCache = [];
 
+let _agendaFiltroAttivo = 'tutti';
+
+function filtraAgenda(cat, btn) {
+  _agendaFiltroAttivo = cat;
+  document.querySelectorAll('.agenda-filtro').forEach(b => b.classList.remove('attivo'));
+  if (btn) btn.classList.add('attivo');
+  renderAgenda();
+}
+
+function renderAgenda() {
+  const el = document.getElementById('notizie-lista');
+  if (!el) return;
+  const data = _agendaFiltroAttivo === 'tutti'
+    ? notizieCache
+    : notizieCache.filter(n => n.categoria === _agendaFiltroAttivo);
+
+  if (!data || data.length === 0) {
+    el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.9rem">Nessuna notizia in questa categoria.</p>';
+    return;
+  }
+
+  // Ordina: prima per data_evento (se presente), poi per data_pubblicazione, entrambe desc
+  const sorted = [...data].sort((a, b) => {
+    const da = new Date(a.data_evento || a.data_pubblicazione);
+    const db = new Date(b.data_evento || b.data_pubblicazione);
+    return db - da;
+  });
+
+  // Raggruppa per mese/anno usando la data di riferimento
+  const mesiNomi = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+  const giorniNomi = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+  const gruppi = {};
+  const ordineGruppi = [];
+  sorted.forEach((n, i) => {
+    const dataRif = n.data_evento ? new Date(n.data_evento + 'T00:00:00') : new Date(n.data_pubblicazione);
+    const chiave = mesiNomi[dataRif.getMonth()] + ' ' + dataRif.getFullYear();
+    if (!gruppi[chiave]) { gruppi[chiave] = []; ordineGruppi.push(chiave); }
+    gruppi[chiave].push({ n, i: notizieCache.indexOf(n) });
+  });
+
+  // Colori categorie
+  const catStyle = {
+    'Adunata':          'background:#e8f0fb;color:#185fa5',
+    'Commemorazione':   'background:#eaf3de;color:#3b6d11',
+    'Sociale':          'background:#faeeda;color:#854f0b',
+    'Protezione Civile':'background:#fcebeb;color:#a32d2d',
+  };
+  const defaultCat = 'background:#f1f5f9;color:#475569';
+
+  let html = '';
+  ordineGruppi.forEach(chiave => {
+    const items = gruppi[chiave];
+    html += '<div class="agenda-mese-header">' +
+      '<div class="agenda-mese-nome">' + chiave + '</div>' +
+      '<div class="agenda-mese-line"></div>' +
+      '<div class="agenda-mese-count">' + items.length + ' ' + (items.length === 1 ? 'notizia' : 'notizie') + '</div>' +
+      '</div>';
+    items.forEach(({ n, i }) => {
+      const dataRif = n.data_evento ? new Date(n.data_evento + 'T00:00:00') : new Date(n.data_pubblicazione);
+      const hasEvento = !!n.data_evento;
+      const giorno = dataRif.getDate();
+      const wday = giorniNomi[dataRif.getDay()];
+      const stile = catStyle[n.categoria] || defaultCat;
+      const thumbHtml = n.foto_copertina
+        ? '<img class="agenda-thumb" src="' + n.foto_copertina + '" alt="">'
+        : '<div class="agenda-thumb-ph"></div>';
+      const subTxt = n.sottotitolo || n.contenuto.substring(0, 80) + '…';
+      const dataOpacity = hasEvento ? '' : 'opacity:0.45;';
+      html += '<div class="agenda-item" onclick="apriNotizia(' + i + ')">' +
+        '<div class="agenda-data-col" style="' + dataOpacity + '"><div class="ag-day">' + giorno + '</div><div class="ag-wday">' + wday + '</div></div>' +
+        '<div class="agenda-sep"></div>' +
+        '<div class="agenda-content">' +
+        '<span class="agenda-cat-badge" style="' + stile + '">' + (n.categoria || '') + '</span>' +
+        '<div class="agenda-titolo">' + n.titolo + '</div>' +
+        '<div class="agenda-sub">' + (hasEvento ? 'evento · ' : 'pubblicato · ') + subTxt + '</div>' +
+        '</div>' +
+        thumbHtml +
+        (hasEvento ? '<div class="agenda-evento-dot" title="ha data evento"></div>' : '') +
+        '</div>';
+    });
+  });
+  el.innerHTML = html;
+}
+
 async function caricaNotiziePublic() {
   const el = document.getElementById('notizie-lista');
   if (!el) return;
   try {
-    const data = await supaFetch('notizie?order=created_at.desc&limit=50');
+    const data = await supaFetch('notizie?order=created_at.desc&limit=100');
     notizieCache = data || [];
     if (!data || data.length === 0) {
-      el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.9rem;grid-column:1/-1">Nessuna notizia disponibile.</p>';
+      el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.9rem">Nessuna notizia disponibile.</p>';
       return;
     }
-    el.innerHTML = data.map((n,i) => {
-      const data_str = new Date(n.data_pubblicazione).toLocaleDateString('it-IT', {day:'numeric', month:'long', year:'numeric'});
-      const img = n.foto_copertina
-        ? '<img class="notizia-card-img" src="' + n.foto_copertina + '" alt="" style="object-position:' + (n.foto_posizione || 'center') + '">'
-        : '<div class="notizia-card-placeholder">📰</div>';
-      return '<div class="notizia-card" onclick="apriNotizia(' + i + ')">' +
-        img +
-        '<div class="notizia-card-body">' +
-        '<div class="notizia-card-meta">' + n.categoria + ' · ' + data_str + '</div>' +
-        '<div class="notizia-card-title">' + n.titolo + '</div>' +
-        (n.sottotitolo ? '<div class="notizia-card-sub">' + n.sottotitolo + '</div>' : "") +
-        '</div></div>';
-    }).join('');
+    // Popola i filtri categoria dinamicamente
+    const filtriEl = document.getElementById('agenda-filtri');
+    if (filtriEl) {
+      const cats = [...new Set(data.map(n => n.categoria).filter(Boolean))].sort();
+      filtriEl.innerHTML = '<span class="agenda-filtro attivo" onclick="filtraAgenda(\'tutti\',this)">Tutti</span>' +
+        cats.map(c => '<span class="agenda-filtro" onclick="filtraAgenda(\'' + c.replace(/'/g,"\\'") + '\',this)">' + c + '</span>').join('');
+    }
+    _agendaFiltroAttivo = 'tutti';
+    renderAgenda();
   } catch(e) {
-    el.innerHTML = '<p style="color:#991b1b;font-size:0.9rem;grid-column:1/-1">Errore caricamento notizie.</p>';
+    el.innerHTML = '<p style="color:#991b1b;font-size:0.9rem">Errore caricamento notizie.</p>';
   }
 }
 
@@ -1482,6 +1596,12 @@ async function caricaNotizie() {
       rowData.value = dataNotizia;
       rowData.style.cssText = 'font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.55rem 0.8rem;outline:none';
 
+      const rowDataEvento = document.createElement('div');
+      rowDataEvento.style.cssText = 'background:#f0f7f4;border-radius:8px;padding:0.7rem 0.9rem;border:1.5px solid #c6e6d8';
+      rowDataEvento.innerHTML = '<label style="font-size:0.72rem;font-weight:700;display:block;margin-bottom:0.3rem">📅 Data evento <span style="font-size:0.62rem;background:#1a3a5c;color:white;padding:1px 6px;border-radius:20px">NUOVO</span></label>' +
+        '<input id="ne-data-evento-' + n.id + '" type="date" value="' + (n.data_evento ? n.data_evento.split('T')[0] : '') + '" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #c6e6d8;border-radius:6px;padding:0.5rem 0.7rem;box-sizing:border-box;outline:none">' +
+        '<p style="font-size:0.68rem;color:var(--testo-ch);margin-top:0.3rem">Lascia vuoto se non è un evento con data precisa</p>';
+
       const row3 = document.createElement('textarea');
       row3.id = 'ne-testo-' + n.id; row3.rows = 4;
       row3.value = n.contenuto || '';
@@ -1536,6 +1656,7 @@ async function caricaNotizie() {
       editDiv.appendChild(row1);
       editDiv.appendChild(row2);
       editDiv.appendChild(rowData);
+      editDiv.appendChild(rowDataEvento);
       editDiv.appendChild(row3);
       editDiv.appendChild(rowFoto);
       editDiv.appendChild(row4);
@@ -1572,9 +1693,11 @@ async function salvaModificaNotizia(id) {
   const contenuto = document.getElementById('ne-testo-' + id).value.trim();
   const dataEl = document.getElementById('ne-data-' + id);
   const data_pubblicazione = dataEl && dataEl.value ? dataEl.value : null;
+  const dataEventoEl = document.getElementById('ne-data-evento-' + id);
+  const data_evento = dataEventoEl ? (dataEventoEl.value || null) : null;
   if (!titolo || !contenuto) { alert('Titolo e testo obbligatori'); return; }
 
-  let aggiornamenti = { titolo, categoria, sottotitolo: sottotitolo || null, contenuto };
+  let aggiornamenti = { titolo, categoria, sottotitolo: sottotitolo || null, contenuto, data_evento };
   if (data_pubblicazione) aggiornamenti.data_pubblicazione = data_pubblicazione;
 
   // Upload nuova foto copertina se selezionata
@@ -2284,45 +2407,59 @@ async function rimuoviFotoVessillo(id) {
 
 async function caricaNotizieHome() {
   const el = document.getElementById('home-notizie-grid');
+  const titEl = document.getElementById('home-notizie-titolo');
   if (!el) return;
   try {
-    const data = await supaFetch('notizie?order=created_at.desc&limit=4');
-    if (!data || data.length === 0) {
-      el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.9rem;grid-column:1/-1">Nessuna notizia disponibile.</p>';
+    const oggi = new Date(); oggi.setHours(0,0,0,0);
+    const fra14 = new Date(oggi); fra14.setDate(fra14.getDate() + 14);
+    const oggiStr = oggi.toISOString().split('T')[0];
+    const fra14Str = fra14.toISOString().split('T')[0];
+
+    // Cerca eventi con data_evento nei prossimi 14 giorni
+    let eventi = await supaFetch('notizie?data_evento=gte.' + oggiStr + '&data_evento=lte.' + fra14Str + '&order=data_evento.asc&limit=6');
+    const haEventi = eventi && eventi.length > 0;
+
+    // Fallback: ultime notizie pubblicate
+    if (!haEventi) {
+      eventi = await supaFetch('notizie?order=created_at.desc&limit=3');
+      if (titEl) titEl.textContent = 'Ultime notizie dalla Sezione';
+    } else {
+      if (titEl) titEl.textContent = 'Prossimi eventi';
+    }
+    notizieCache = eventi || [];
+
+    if (!eventi || eventi.length === 0) {
+      el.innerHTML = '<p style="color:var(--testo-ch);font-size:0.9rem">Nessuna notizia disponibile.</p>';
       return;
     }
-    const principale = data[0];
-    const laterali = data.slice(1);
-    const dataFmt = d => new Date(d).toLocaleDateString('it-IT', {day:'numeric', month:'long', year:'numeric'});
 
-    const imgMain = principale.foto_copertina
-      ? '<img src="' + principale.foto_copertina + '" style="width:100%;height:auto;max-height:300px;object-fit:contain;display:block;cursor:pointer;background:#f8f8f8" onclick="apriNotizia(0)">'
-      : '<div class="notizia-img" style="cursor:pointer;height:180px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--verde-pale),#dbeafe);font-size:3rem" onclick="apriNotizia(0)">📰</div>';
+    const mesi = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+    const giorni = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
 
-    const mainHtml = '<div class="notizia-main" onclick="apriNotizia(0)" style="cursor:pointer">' +
-      imgMain +
-      '<div class="notizia-content">' +
-      '<div class="notizia-meta">' + principale.categoria + ' · ' + dataFmt(principale.data_pubblicazione) + '</div>' +
-      '<h3>' + principale.titolo + '</h3>' +
-      '<p>' + (principale.sottotitolo || principale.contenuto.substring(0,120) + '...') + '</p>' +
-      '</div></div>';
-
-    const lateraliHtml = '<div class="notizie-side">' +
-      laterali.map((n, i) => {
-        const idx = i + 1;
-        const anno = new Date(n.data_pubblicazione).getFullYear();
-        return '<div class="notizia-small" onclick="apriNotizia(' + idx + ')">' +
-          '<div class="ns-data">' + anno + '</div>' +
-          '<div><h4>' + n.titolo + '</h4>' +
-          '<p>' + (n.sottotitolo || n.contenuto.substring(0,80) + '...') + '</p></div>' +
-          '</div>';
-      }).join('') +
-      '</div>';
-
-    el.innerHTML = mainHtml + lateraliHtml;
-
-    // Sincronizza notizieCache con i dati home così apriNotizia funziona
-    notizieCache = data;
+    el.innerHTML = eventi.map((n, i) => {
+      const dataRif = n.data_evento ? new Date(n.data_evento + 'T00:00:00') : new Date(n.data_pubblicazione);
+      const giorno = dataRif.getDate();
+      const mese = mesi[dataRif.getMonth()];
+      let countdownHtml = '';
+      if (haEventi && n.data_evento) {
+        const diff = Math.round((dataRif - oggi) / 86400000);
+        countdownHtml = diff === 0 ? 'oggi!' : diff === 1 ? 'domani' : 'tra ' + diff + ' giorni';
+      }
+      const fotoHtml = n.foto_copertina
+        ? '<img class="evento-card-foto" src="' + n.foto_copertina + '" alt="">'
+        : '<div class="evento-card-foto-ph"></div>';
+      return '<div class="evento-card" onclick="apriNotizia(' + i + ')">' +
+        fotoHtml +
+        '<div class="evento-card-top">' +
+        '<div class="evento-data-box"><div class="ev-day">' + giorno + '</div><div class="ev-month">' + mese + '</div></div>' +
+        '<div class="evento-badge">' + (n.categoria || '') + '</div>' +
+        (countdownHtml ? '<div class="evento-countdown">' + countdownHtml + '</div>' : '') +
+        '</div>' +
+        '<div class="evento-card-body">' +
+        '<div class="evento-card-titolo">' + n.titolo + '</div>' +
+        (n.sottotitolo ? '<div class="evento-card-luogo">' + n.sottotitolo + '</div>' : '') +
+        '</div></div>';
+    }).join('');
   } catch(e) {
     el.innerHTML = '<p style="color:#991b1b;font-size:0.9rem">Errore caricamento notizie.</p>';
   }
