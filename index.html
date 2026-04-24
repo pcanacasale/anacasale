@@ -103,7 +103,7 @@ nav {
   text-decoration:none; display:inline-block; transition:all 0.22s; cursor:pointer; letter-spacing:0.5px;
 }
 .btn-outline-white:hover { background:rgba(255,255,255,0.12); border-color:white; transform:translateY(-2px); }
-.hero-cards { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.hero-cards { display:grid; grid-template-columns:repeat(6,1fr); gap:1rem; }
 .hero-stat {
   background:rgba(255,255,255,0.08); backdrop-filter:blur(10px);
   border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:1.4rem 1.2rem; transition:transform 0.22s;
@@ -111,6 +111,10 @@ nav {
 .hero-stat:hover { transform:translateY(-3px); }
 .hero-stat .num { font-size:2.4rem; font-weight:900; line-height:1; color:#fde68a; margin-bottom:0.3rem; }
 .hero-stat .lbl { font-size:0.72rem; font-weight:700; color:rgba(255,255,255,0.6); letter-spacing:0.8px; text-transform:uppercase; }
+.hero-stat-totale { grid-column:1/-1; text-align:center; }
+.hero-stat-totale .num { font-size:3.2rem; }
+.hero-stat-small .num { font-size:1.6rem; }
+.hero-stat-small .lbl { font-size:0.65rem; }
 
 /* ─── CONTAINERS / SECTIONS ─── */
 .container { max-width:1100px; margin:0 auto; padding:0 2rem; }
@@ -478,10 +482,12 @@ footer a { color:var(--verde-ch); text-decoration:none; }
         </div>
       </div>
       <div class="hero-cards">
-        <div class="hero-stat"><div class="num">1928</div><div class="lbl">Anno di Fondazione</div></div>
-        <div class="hero-stat"><div class="num" id="stat-gruppi">26</div><div class="lbl">Gruppi Alpini</div></div>
-        <div class="hero-stat"><div class="num" id="stat-soci-alpini">832</div><div class="lbl">Soci Alpini</div></div>
-        <div class="hero-stat"><div class="num" id="stat-iscritti">1.224</div><div class="lbl">Iscritti totali</div></div>
+        <div class="hero-stat" style="grid-column:span 3"><div class="num">1928</div><div class="lbl">Anno di Fondazione</div></div>
+        <div class="hero-stat" style="grid-column:span 3"><div class="num" id="stat-gruppi">27</div><div class="lbl">Gruppi Alpini</div></div>
+        <div class="hero-stat hero-stat-totale"><div class="num" id="stat-iscritti">1.145</div><div class="lbl">Iscritti Totali</div></div>
+        <div class="hero-stat hero-stat-small" style="grid-column:span 2"><div class="num" id="stat-soci-alpini">724</div><div class="lbl">Alpini</div></div>
+        <div class="hero-stat hero-stat-small" style="grid-column:span 2"><div class="num" id="stat-amici">—</div><div class="lbl">Amici degli Alpini</div></div>
+        <div class="hero-stat hero-stat-small" style="grid-column:span 2"><div class="num" id="stat-aggregati">—</div><div class="lbl">Aggregati</div></div>
       </div>
     </div>
   </section>
@@ -1146,11 +1152,17 @@ footer a { color:var(--verde-ch); text-decoration:none; }
       <div id="tab-impostazioni" style="display:none">
         <div style="background:white;border-radius:16px;padding:2rem;box-shadow:0 4px 24px var(--ombra)">
           <h3 style="font-size:1rem;font-weight:900;color:var(--blu);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:2px solid var(--verde-pale)">⚙️ Numeri in evidenza (Home)</h3>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
-            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Soci Alpini</label><input id="imp-soci-alpini" type="text" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
-            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Soci Aggregati</label><input id="imp-soci-aggregati" type="text" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
-            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Amici degli Alpini</label><input id="imp-amici" type="text" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
-            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Gruppi Alpini</label><input id="imp-gruppi" type="text" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Gruppi Alpini</label><input id="imp-gruppi" type="text" oninput="aggiornaPreviewTotale()" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+            <div style="display:flex;flex-direction:column;justify-content:flex-end;background:#f0f7f4;border-radius:10px;padding:0.65rem 0.9rem;border:1.5px solid #c6e6d8">
+              <div style="font-size:0.72rem;font-weight:700;color:var(--testo-ch);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:2px">Iscritti Totali (calcolato)</div>
+              <div id="imp-totale-preview" style="font-size:1.5rem;font-weight:900;color:var(--blu)">—</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Alpini</label><input id="imp-soci-alpini" type="text" oninput="aggiornaPreviewTotale()" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Amici degli Alpini</label><input id="imp-amici" type="text" oninput="aggiornaPreviewTotale()" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
+            <div><label style="font-size:0.75rem;font-weight:700;display:block;margin-bottom:0.3rem">Aggregati</label><input id="imp-soci-aggregati" type="text" oninput="aggiornaPreviewTotale()" style="width:100%;font-family:Nunito,sans-serif;font-size:0.85rem;border:1.5px solid #e2e8f0;border-radius:8px;padding:0.65rem 0.9rem;box-sizing:border-box;outline:none"></div>
           </div>
           <div style="display:flex;gap:1rem;align-items:center">
             <button onclick="salvaImpostazioni()" style="background:var(--verde);color:white;border:none;cursor:pointer;font-family:Nunito,sans-serif;font-size:0.85rem;font-weight:800;padding:0.7rem 1.6rem;border-radius:8px">Salva</button>
@@ -2417,6 +2429,11 @@ async function caricaNotizieHome() {
 
     // Cerca eventi con data_evento nei prossimi 14 giorni
     let eventi = await supaFetch('notizie?data_evento=gte.' + oggiStr + '&data_evento=lte.' + fra14Str + '&order=data_evento.asc&limit=6');
+    // Filtro lato client per sicurezza fuso orario: scarta eventi già passati
+    if (eventi) eventi = eventi.filter(n => {
+      const d = new Date(n.data_evento + 'T00:00:00'); d.setHours(0,0,0,0);
+      return d >= oggi;
+    });
     const haEventi = eventi && eventi.length > 0;
 
     // Fallback: ultime notizie pubblicate
@@ -3019,14 +3036,18 @@ async function caricaImpostazioniPublic() {
     const alpini = parseInt(map.soci_alpini || 0);
     const aggregati = parseInt(map.soci_aggregati || 0);
     const amici = parseInt(map.amici || 0);
-    const gruppi = map.gruppi || '26';
+    const gruppi = map.gruppi || '27';
     const totale = alpini + aggregati + amici;
     const el1 = document.getElementById('stat-soci-alpini');
     const el2 = document.getElementById('stat-gruppi');
     const el3 = document.getElementById('stat-iscritti');
+    const el4 = document.getElementById('stat-amici');
+    const el5 = document.getElementById('stat-aggregati');
     if (el1) el1.textContent = alpini.toLocaleString('it-IT');
     if (el2) el2.textContent = gruppi;
     if (el3) el3.textContent = totale.toLocaleString('it-IT');
+    if (el4) el4.textContent = amici.toLocaleString('it-IT');
+    if (el5) el5.textContent = aggregati.toLocaleString('it-IT');
   } catch(e) {}
 }
 
@@ -3041,7 +3062,17 @@ async function caricaImpostazioni() {
       const el = document.getElementById('imp-' + k.replace('_','-'));
       if (el) el.value = map[k] || '';
     });
+    aggiornaPreviewTotale();
   } catch(e) {}
+}
+
+function aggiornaPreviewTotale() {
+  const a = parseInt(document.getElementById('imp-soci-alpini')?.value || 0);
+  const ag = parseInt(document.getElementById('imp-soci-aggregati')?.value || 0);
+  const am = parseInt(document.getElementById('imp-amici')?.value || 0);
+  const tot = (isNaN(a)?0:a) + (isNaN(ag)?0:ag) + (isNaN(am)?0:am);
+  const el = document.getElementById('imp-totale-preview');
+  if (el) el.textContent = tot > 0 ? tot.toLocaleString('it-IT') : '—';
 }
 
 async function salvaImpostazioni() {
