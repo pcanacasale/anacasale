@@ -1714,7 +1714,7 @@ async function salvaGiornale() {
     const nomefile = file.name;
     const res = await fetch(SUPA_URL + '/storage/v1/object/giornale/' + encodeURIComponent(nomefile), {
       method: 'POST',
-      headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY, 'Content-Type': 'application/pdf', 'x-upsert': 'true' },
+      headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY, 'Content-Type': file.type || 'application/pdf', 'x-upsert': 'true' },
       body: file
     });
     if (!res.ok) throw new Error('Upload fallito: ' + await res.text());
