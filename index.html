@@ -1170,6 +1170,7 @@ footer a { color:var(--verde-ch); text-decoration:none; }
 <script>
 const SUPA_URL = 'https://vtfxultyvjhwrqqbrztu.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ0Znh1bHR5dmpod3JxcWJyenR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNTAyMTksImV4cCI6MjA4ODkyNjIxOX0.l0pYO98UTGNbDFCACfU8kZWv7Hhhc-pnLpx-EHQDU24';
+const SUPA_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ0Znh1bHR5dmpod3JxcWJyenR1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzM1MDIxOSwiZXhwIjoyMDg4OTI2MjE5fQ.-Z7q1zgMnOnJiEZAT4sG19JMRrg2f_442GFDoMx44uQ';
 
 async function supaFetch(path, options={}) {
   const res = await fetch(SUPA_URL + '/rest/v1/' + path, {
@@ -1714,7 +1715,7 @@ async function salvaGiornale() {
     const nomefile = file.name;
     const res = await fetch(SUPA_URL + '/storage/v1/object/giornale/' + encodeURIComponent(nomefile), {
       method: 'POST',
-      headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY, 'Content-Type': file.type || 'application/pdf', 'x-upsert': 'true' },
+      headers: { 'apikey': SUPA_SERVICE_KEY, 'Authorization': 'Bearer ' + SUPA_SERVICE_KEY, 'Content-Type': file.type || 'application/pdf', 'x-upsert': 'true' },
       body: file
     });
     if (!res.ok) throw new Error('Upload fallito: ' + await res.text());
